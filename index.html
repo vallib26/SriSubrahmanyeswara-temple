@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="te" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sri Sri Sri Valli Devasena Sametha Subrahmanyeswara Swamy Temple, Vilasavilli | శ్రీ శ్రీ శ్రీ వల్లీ దేవసేన సమేత సుబ్రహ్మణ్యేశ్వర స్వామి దేవస్థానం, విలాసవిల్లి</title>
+<meta name="description" content="Official website of Sri Sri Sri Valli Devasena Sametha Subrahmanyeswara Swamy Temple, Vilasavilli.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&family=Karla:wght@400;600;700&family=Noto+Serif+Telugu:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+/* ============================================
+   Sri Vilasavilli Subrahmanya Swami Devastanam
+   Design tokens
+   ============================================ */
+:root{
+  --maroon:#7A1F2B;
+  --maroon-dark:#571420;
+  --gold:#C9A227;
+  --gold-light:#E4C765;
+  --ivory:#F7F0E3;
+  --ivory-deep:#EFE4CC;
+  --peacock:#0F5257;
+  --peacock-dark:#0A3B3F;
+  --charcoal:#2B2320;
+  --line:#DED0AC;
+  --white:#FFFDF8;
+  --shadow: 0 10px 30px rgba(43,35,32,0.12);
+  --radius: 4px;
+  --display: "Cormorant Garamond", "Noto Serif Telugu", serif;
+  --body: "Lora", "Noto Serif Telugu", serif;
+  --ui: "Karla", sans-serif;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
+}
+
+body{
+  margin:0;
+  font-family:var(--body);
+  color:var(--charcoal);
+  background:var(--ivory);
+  line-height:1.6;
+}
+
+h1,h2,h3,h4{
+  font-family:var(--display);
+  font-weight:600;
+  margin:0 0 .4em;
+  color:var(--maroon-dark);
+}
+h1{font-size:clamp(2.6rem,6vw,4.6rem); line-height:1.05;}
+h2{font-size:clamp(1.9rem,4vw,2.8rem);}
+h3{font-size:clamp(1.3rem,2.4vw,1.6rem);}
+p{margin:0 0 1em;}
+a{color:var(--peacock-dark);}
+img{max-width:100%; display:block;}
+
+.eyebrow{
+  font-family:var(--ui);
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  font-size:.72rem;
+  color:var(--gold);
+  font-weight:700;
+  margin-bottom:.6em;
+}
+
+.container{
+  max-width:1180px;
+  margin:0 auto;
+  padding:0 24px;
+}
+
+.section{
+  padding:96px 0;
+  position:relative;
+}
+.section--tight{padding:64px 0;}
+.section--deep{
+  background:var(--peacock-dark);
+  color:var(--ivory);
+}
+.section--deep h2, .section--deep h3{color:var(--gold-light);}
+.section--deep .eyebrow{color:var(--gold-light);}
+
+.section-head{
+  max-width:640px;
+  margin:0 0 48px;
+}
+.section-head.center{margin-left:auto; margin-right:auto; text-align:center;}
+
+/* ---------- Feather divider (signature element) ---------- */
+.feather-divider{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  margin:0 auto 40px;
+  width:fit-content;
+}
+.feather-divider .line{
+  width:64px; height:1px; background:var(--line);
+}
+.feather-divider svg{width:28px; height:28px;}
+
+/* ---------- Nav ---------- */
+.nav{
+  position:sticky; top:0; z-index:100;
+  background:rgba(247,240,227,0.92);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  max-width:1180px; margin:0 auto; padding:14px 24px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.brand{
+  display:flex; align-items:center; gap:10px;
+  font-family:var(--display); font-weight:700; color:var(--maroon-dark);
+  text-decoration:none; font-size:1.15rem;
+}
+.brand svg{width:30px; height:30px;}
+.brand .tel{font-family:"Noto Serif Telugu", serif; display:block; font-size:.7rem; color:var(--gold); font-weight:400;}
+.nav-links{
+  display:flex; gap:28px; list-style:none; margin:0; padding:0;
+  font-family:var(--ui); font-size:.86rem; letter-spacing:.03em;
+}
+.nav-links a{
+  text-decoration:none; color:var(--charcoal); font-weight:600;
+  padding:6px 2px; border-bottom:2px solid transparent;
+  transition:border-color .2s ease, color .2s ease;
+}
+.nav-links a:hover{color:var(--maroon); border-color:var(--gold);}
+.nav-cta{
+  background:var(--maroon); color:var(--white) !important; padding:9px 18px !important;
+  border-radius:2px; border-bottom:none !important;
+}
+.nav-cta:hover{background:var(--maroon-dark); color:var(--white) !important;}
+.menu-toggle{display:none; background:none; border:none; cursor:pointer;}
+.menu-toggle svg{width:26px; height:26px; color:var(--maroon-dark);}
+
+@media (max-width:860px){
+  .nav-links{
+    position:fixed; inset:64px 0 auto 0; background:var(--ivory);
+    flex-direction:column; padding:24px; gap:18px;
+    border-bottom:1px solid var(--line);
+    transform:translateY(-120%); transition:transform .3s ease;
+  }
+  .nav-links.open{transform:translateY(0);}
+  .menu-toggle{display:block;}
+}
+
+/* ---------- Hero ---------- */
+.hero{
+  position:relative;
+  min-height:92vh;
+  display:flex; align-items:center;
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(201,162,39,0.18), transparent 55%),
+    linear-gradient(180deg, var(--peacock-dark) 0%, var(--maroon-dark) 100%);
+  color:var(--ivory);
+  overflow:hidden;
+}
+.hero-gopuram{
+  position:absolute; bottom:-2px; left:0; width:100%; opacity:.9;
+}
+.hero-inner{
+  position:relative; z-index:2;
+  max-width:1180px; margin:0 auto; padding:80px 24px 220px;
+  width:100%;
+}
+.hero .eyebrow{color:var(--gold-light);}
+.hero h1{color:var(--white); margin-bottom:.25em;}
+.hero .tel-name{
+  font-family:"Noto Serif Telugu", serif;
+  font-size:1.3rem; color:var(--gold-light); margin-bottom:.6em; display:block;
+}
+.hero p.lede{
+  max-width:560px; color:#EFE2C9; font-size:1.1rem;
+}
+.hero-ctas{display:flex; gap:16px; flex-wrap:wrap; margin-top:28px;}
+.btn{
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--ui); font-weight:700; font-size:.85rem;
+  letter-spacing:.03em; text-decoration:none;
+  padding:14px 26px; border-radius:2px; border:1.5px solid transparent;
+  cursor:pointer; transition:transform .15s ease, background .2s ease;
+}
+.btn:hover{transform:translateY(-2px);}
+.btn-gold{background:var(--gold); color:var(--maroon-dark);}
+.btn-gold:hover{background:var(--gold-light);}
+.btn-outline{border-color:var(--gold-light); color:var(--gold-light);}
+.btn-outline:hover{background:rgba(228,199,101,0.1);}
+.btn-maroon{background:var(--maroon); color:var(--white);}
+.btn-maroon:hover{background:var(--maroon-dark);}
+
+.hero-stats{
+  display:flex; gap:40px; margin-top:56px; flex-wrap:wrap;
+}
+.hero-stats div{border-left:2px solid var(--gold); padding-left:14px;}
+.hero-stats .num{font-family:var(--display); font-size:2rem; color:var(--gold-light); display:block;}
+.hero-stats .label{font-family:var(--ui); font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:#D9CBA8;}
+
+/* ---------- Placeholder media block ---------- */
+.ph{
+  background:linear-gradient(135deg, var(--ivory-deep), #E3D5AE);
+  border:1.5px dashed var(--gold);
+  color:var(--maroon-dark);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; gap:6px; padding:20px;
+  font-family:var(--ui);
+}
+.ph svg{width:34px; height:34px; opacity:.6; margin-bottom:6px;}
+.ph .ph-title{font-weight:700; font-size:.85rem;}
+.ph .ph-dim{font-size:.72rem; color:var(--peacock-dark); opacity:.8;}
+
+/* ---------- About / two column ---------- */
+.two-col{
+  display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;
+}
+@media (max-width:860px){ .two-col{grid-template-columns:1fr;} }
+.two-col.reverse{grid-template-columns:1fr 1fr;}
+@media (max-width:860px){ .two-col.reverse{grid-template-columns:1fr;} }
+
+/* ---------- History timeline / grandparents story ---------- */
+.story-card{
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:40px;
+  box-shadow:var(--shadow);
+  position:relative;
+}
+.story-card::before{
+  content:"";
+  position:absolute; top:0; left:0; width:5px; height:100%;
+  background:linear-gradient(180deg, var(--gold), var(--maroon));
+}
+.story-video{
+  aspect-ratio:16/9; border-radius:var(--radius); overflow:hidden; margin-top:24px;
+}
+
+/* ---------- Rituals timetable ---------- */
+.timetable{
+  width:100%; border-collapse:collapse; font-family:var(--ui); font-size:.92rem;
+  background:var(--white); box-shadow:var(--shadow); border-radius:var(--radius); overflow:hidden;
+}
+.timetable th, .timetable td{
+  text-align:left; padding:14px 18px; border-bottom:1px solid var(--line);
+}
+.timetable th{
+  background:var(--maroon); color:var(--white); font-weight:700; letter-spacing:.03em;
+  text-transform:uppercase; font-size:.72rem;
+}
+.timetable tr:last-child td{border-bottom:none;}
+.timetable tr:nth-child(even) td{background:var(--ivory-deep);}
+
+.editnote{
+  font-family:var(--ui); font-size:.78rem; color:var(--peacock-dark);
+  background:#E7F1EF; border:1px solid #BFDAD6; padding:10px 14px; border-radius:2px;
+  margin-top:14px; display:inline-block;
+}
+
+/* ---------- Utsavam / Seva cards ---------- */
+.card-grid{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:28px;
+}
+.card{
+  background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+  padding:28px; box-shadow:var(--shadow); transition:transform .2s ease;
+}
+.card:hover{transform:translateY(-4px);}
+.card .icon{width:38px; height:38px; color:var(--maroon); margin-bottom:14px;}
+.card h3{margin-bottom:.35em;}
+.card .price{
+  font-family:var(--ui); font-weight:700; color:var(--peacock-dark); margin-top:12px; font-size:.95rem;
+}
+.card .tag{
+  display:inline-block; font-family:var(--ui); font-size:.68rem; letter-spacing:.05em;
+  text-transform:uppercase; background:var(--ivory-deep); color:var(--maroon-dark);
+  padding:3px 10px; border-radius:20px; margin-bottom:10px; font-weight:700;
+}
+
+/* ---------- Gallery ---------- */
+.gallery-tabs{
+  display:flex; gap:12px; margin-bottom:32px; flex-wrap:wrap;
+}
+.gtab{
+  font-family:var(--ui); font-weight:700; font-size:.82rem; letter-spacing:.03em;
+  padding:10px 20px; border-radius:20px; border:1.5px solid var(--maroon); background:none;
+  color:var(--maroon); cursor:pointer; transition:all .2s ease;
+}
+.gtab.active, .gtab:hover{background:var(--maroon); color:var(--white);}
+.gallery-grid{
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:18px;
+}
+.gallery-grid .ph{aspect-ratio:4/3; border-radius:var(--radius);}
+.gallery-panel{display:none;}
+.gallery-panel.active{display:block;}
+
+/* ---------- Donation ---------- */
+.donate-grid{
+  display:grid; grid-template-columns:1fr 1.1fr; gap:48px; align-items:start;
+}
+@media (max-width:860px){ .donate-grid{grid-template-columns:1fr;} }
+.qr-box{
+  background:var(--white); border-radius:var(--radius); padding:32px; text-align:center;
+  box-shadow:var(--shadow);
+}
+.qr-box .ph{width:220px; height:220px; margin:0 auto 16px; border-radius:var(--radius);}
+.bank-table{width:100%; font-family:var(--ui); font-size:.9rem; border-collapse:collapse;}
+.bank-table td{padding:10px 0; border-bottom:1px dashed var(--line);}
+.bank-table td:first-child{color:var(--peacock-dark); font-weight:700; width:40%;}
+.donate-steps li{margin-bottom:10px;}
+
+/* ---------- Store ---------- */
+.store-card .price{font-size:1.1rem;}
+
+/* ---------- Footer ---------- */
+footer{
+  background:var(--charcoal); color:#D9CBA8; padding:56px 0 24px; font-family:var(--ui); font-size:.88rem;
+}
+.footer-grid{
+  display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:36px; margin-bottom:36px;
+}
+@media (max-width:760px){ .footer-grid{grid-template-columns:1fr 1fr;} }
+footer h4{color:var(--gold-light); font-family:var(--ui); font-size:.78rem; text-transform:uppercase; letter-spacing:.06em; margin-bottom:14px;}
+footer a{color:#D9CBA8; text-decoration:none;}
+footer a:hover{color:var(--gold-light);}
+footer ul{list-style:none; padding:0; margin:0;}
+footer li{margin-bottom:8px;}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,0.1); padding-top:20px; text-align:center; font-size:.78rem; color:#9C8F72;
+}
+
+/* scroll reveal */
+.reveal{opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease;}
+.reveal.in{opacity:1; transform:none;}
+
+/* ---------- Real/illustrative image frames (added) ---------- */
+.img-frame{
+  position:relative; overflow:hidden; border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+.img-frame img{width:100%; height:100%; object-fit:cover; display:block;}
+.img-caption{
+  display:block; font-family:var(--ui); font-size:.7rem; color:var(--peacock-dark);
+  opacity:.75; margin-top:6px; text-align:center;
+}
+.gallery-tile{aspect-ratio:4/3;}
+.gallery-tile .img-caption{
+  position:absolute; bottom:0; left:0; right:0; margin:0;
+  background:linear-gradient(0deg, rgba(10,59,63,0.75), transparent);
+  color:#F7F0E3; opacity:0; padding:18px 10px 8px; text-align:center;
+  transition:opacity .2s ease;
+}
+.gallery-tile:hover .img-caption{opacity:1;}
+.play-overlay{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+}
+.play-overlay svg{width:56px; height:56px;}
+
+/* ---------- Bilingual toggle (added) ---------- */
+[data-lang="en"] .t-te{display:none;}
+[data-lang="te"] .t-en{display:none;}
+[data-lang="te"] body, [data-lang="te"]{font-family:"Noto Serif Telugu", serif;}
+[data-lang="te"] h1, [data-lang="te"] h2, [data-lang="te"] h3, [data-lang="te"] h4{
+  font-family:"Noto Serif Telugu", serif; font-weight:700;
+}
+[data-lang="te"] .eyebrow, [data-lang="te"] .btn, [data-lang="te"] .nav-links, [data-lang="te"] .gtab, [data-lang="te"] footer h4{
+  font-family:"Noto Serif Telugu", sans-serif;
+}
+.lang-toggle{
+  display:flex; align-items:center; gap:6px;
+  font-family:var(--ui); font-weight:700; font-size:.82rem;
+  background:none; border:1.5px solid var(--maroon); color:var(--maroon);
+  padding:7px 14px; border-radius:20px; cursor:pointer; transition:all .2s ease;
+}
+.lang-toggle:hover{background:var(--maroon); color:var(--white);}
+.lang-toggle svg{width:16px; height:16px;}
+
+/* ---------- Animated logo (added) ---------- */
+.brand-logo{
+  width:38px; height:38px; border-radius:50%;
+}
+.halo-ring{
+  animation: haloPulse 3.2s ease-in-out infinite;
+  transform-origin:center;
+}
+.feather-sway{
+  animation: featherSway 3.6s ease-in-out infinite;
+  transform-origin:0px 34px;
+}
+@keyframes haloPulse{
+  0%,100%{opacity:.75; transform:scale(1);}
+  50%{opacity:1; transform:scale(1.06);}
+}
+@keyframes featherSway{
+  0%,100%{transform:rotate(-4deg);}
+  50%{transform:rotate(4deg);}
+}
+@media (prefers-reduced-motion: reduce){
+  .halo-ring, .feather-sway{animation:none;}
+}
+
+/* ---------- Hero image slider (added) ---------- */
+.hero-slider{
+  position:absolute; inset:0; z-index:0; overflow:hidden;
+}
+.hero-slide{
+  position:absolute; inset:0; opacity:0; transition:opacity 1.2s ease;
+}
+.hero-slide.active{opacity:1;}
+.hero-slide img{width:100%; height:100%; object-fit:cover;}
+.hero-slider-overlay{
+  position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(10,59,63,0.72) 0%, rgba(87,20,32,0.72) 100%);
+}
+.hero-slider-dots{
+  position:absolute; bottom:28px; left:50%; transform:translateX(-50%); z-index:3;
+  display:flex; gap:10px;
+}
+.hero-slider-dots button{
+  width:9px; height:9px; border-radius:50%; border:1.5px solid var(--gold-light);
+  background:transparent; padding:0; cursor:pointer; transition:background .2s ease;
+}
+.hero-slider-dots button.active{background:var(--gold-light);}
+
+.hero-fullname{color:var(--white); margin-bottom:.3em; font-size:clamp(1.9rem,4.6vw,3.2rem); line-height:1.18;}
+.hero-fullname .place{color:var(--gold-light); font-size:.7em;}
+[data-lang="te"] .hero-fullname{font-family:"Noto Serif Telugu", serif; font-size:clamp(1.7rem,4.2vw,2.7rem);}
+
+/* ---------- Seva booking button (added) ---------- */
+.btn-book-seva{
+  display:block; width:100%; margin-top:14px;
+  font-family:var(--ui); font-weight:700; font-size:.8rem; letter-spacing:.03em;
+  background:var(--peacock); color:var(--white); border:none;
+  padding:10px 16px; border-radius:2px; cursor:pointer; transition:background .2s ease;
+}
+.btn-book-seva:hover{background:var(--peacock-dark);}
+
+/* ---------- Nav auth link ---------- */
+.nav-auth-link{
+  display:flex; align-items:center; gap:5px;
+}
+.nav-auth-link::before{
+  content:"👤"; font-size:.85em;
+}
+
+/* ---------- Modals (added) ---------- */
+.modal-overlay{
+  position:fixed; inset:0; z-index:200; background:rgba(43,35,32,0.55);
+  display:none; align-items:center; justify-content:center; padding:20px;
+}
+.modal-overlay.open{display:flex;}
+.modal-box{
+  background:var(--white); border-radius:6px; padding:32px; max-width:440px; width:100%;
+  max-height:88vh; overflow-y:auto; position:relative; box-shadow:0 20px 60px rgba(0,0,0,0.3);
+}
+.modal-close{
+  position:absolute; top:14px; right:16px; background:none; border:none; font-size:1.5rem;
+  cursor:pointer; color:var(--charcoal); line-height:1; padding:4px;
+}
+.modal-box h3{margin-bottom:.5em;}
+.modal-box form{display:flex; flex-direction:column; gap:16px; margin-top:20px;}
+.modal-box label{
+  display:flex; flex-direction:column; gap:6px;
+  font-family:var(--ui); font-size:.82rem; font-weight:700; color:var(--maroon-dark);
+}
+.modal-box input, .modal-box textarea{
+  font-family:var(--body); font-size:.95rem; padding:10px 12px;
+  border:1.5px solid var(--line); border-radius:3px; background:var(--ivory);
+  font-weight:400; color:var(--charcoal);
+}
+.modal-box input:focus, .modal-box textarea:focus{outline:2px solid var(--gold); border-color:var(--gold);}
+
+/* ---------- Dashboard (added) ---------- */
+.dashboard-overlay{
+  position:fixed; inset:0; z-index:190; background:rgba(43,35,32,0.55);
+  display:none; align-items:flex-start; justify-content:center; padding:40px 20px;
+  overflow-y:auto;
+}
+.dashboard-overlay.open{display:flex;}
+.dashboard-panel{
+  background:var(--white); border-radius:6px; max-width:720px; width:100%;
+  box-shadow:0 20px 60px rgba(0,0,0,0.3);
+}
+.dashboard-head{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:24px 28px; border-bottom:1px solid var(--line);
+}
+.dashboard-head > div{display:flex; align-items:center; gap:8px;}
+.btn-outline-dark{
+  font-family:var(--ui); font-weight:700; font-size:.78rem;
+  background:none; border:1.5px solid var(--maroon); color:var(--maroon);
+  padding:8px 16px; border-radius:20px; cursor:pointer;
+}
+.btn-outline-dark:hover{background:var(--maroon); color:var(--white);}
+#dashboardList{padding:24px 28px;}
+.booking-card{
+  border:1px solid var(--line); border-radius:4px; padding:18px 20px; margin-bottom:16px;
+  background:var(--ivory);
+}
+.booking-card h4{margin:0 0 6px; font-family:var(--display); color:var(--maroon-dark); font-size:1.15rem;}
+.booking-card .meta{font-family:var(--ui); font-size:.78rem; color:var(--peacock-dark); margin-bottom:10px;}
+.booking-card label{
+  display:block; font-family:var(--ui); font-size:.72rem; font-weight:700; color:var(--maroon-dark);
+  margin-top:10px; margin-bottom:4px;
+}
+.booking-card input, .booking-card textarea{
+  width:100%; font-family:var(--body); font-size:.88rem; padding:7px 10px;
+  border:1px solid var(--line); border-radius:3px; background:var(--white);
+}
+.booking-card .booking-actions{display:flex; gap:10px; margin-top:14px; flex-wrap:wrap;}
+.booking-card .booking-actions button{
+  font-family:var(--ui); font-size:.75rem; font-weight:700; padding:7px 14px; border-radius:20px;
+  cursor:pointer; border:1.5px solid var(--maroon); background:none; color:var(--maroon);
+}
+.booking-card .booking-actions button:hover{background:var(--maroon); color:var(--white);}
+.empty-state{
+  text-align:center; padding:40px 20px; font-family:var(--ui); color:var(--peacock-dark);
+}
+
+/* ---------- Toast (added) ---------- */
+.toast{
+  position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px);
+  background:var(--maroon-dark); color:var(--white); font-family:var(--ui); font-size:.88rem;
+  padding:14px 22px; border-radius:6px; box-shadow:0 10px 30px rgba(0,0,0,0.25);
+  z-index:300; opacity:0; pointer-events:none; transition:opacity .3s ease, transform .3s ease;
+  display:flex; align-items:center; gap:14px; max-width:90vw;
+}
+.toast.show{opacity:1; transform:translateX(-50%) translateY(0); pointer-events:auto;}
+.toast a{color:var(--gold-light); font-weight:700; text-decoration:underline;}
+
+/* ---------- Map (added) ---------- */
+.map-wrap{
+  border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow);
+}
+#templeMap{width:100%; height:380px;}
+.map-legend{
+  display:flex; align-items:center; gap:12px; background:var(--white);
+  padding:14px 20px; font-family:var(--ui); font-size:.85rem; color:var(--charcoal);
+}
+.devotee-icon{width:34px; height:34px; border-radius:50%;}
+.vel-marker{width:34px; height:56px;}
+
+/* ---------- Donation form (added) ---------- */
+.donation-form{
+  display:flex; flex-direction:column; gap:14px; margin-top:20px;
+  background:var(--white); padding:22px; border-radius:4px; border:1px solid var(--line);
+}
+.donation-form label{
+  display:flex; flex-direction:column; gap:6px;
+  font-family:var(--ui); font-size:.8rem; font-weight:700; color:var(--maroon-dark);
+}
+.donation-form input{
+  font-family:var(--body); font-size:.92rem; padding:9px 12px;
+  border:1.5px solid var(--line); border-radius:3px; background:var(--ivory);
+}
+
+/* ---------- Admin dashboard (added) ---------- */
+.admin-stats{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:16px; margin-bottom:28px;
+}
+.admin-stats .stat-box{
+  background:var(--ivory-deep); border-radius:4px; padding:18px 20px; text-align:center;
+}
+.admin-stats .stat-box .num{font-family:var(--display); font-size:1.9rem; color:var(--maroon-dark); display:block;}
+.admin-stats .stat-box .label{font-family:var(--ui); font-size:.72rem; text-transform:uppercase; letter-spacing:.04em; color:var(--peacock-dark);}
+.admin-tabs{display:flex; gap:10px; margin-bottom:20px;}
+.admin-panel{display:none;}
+.admin-panel.active{display:block;}
+.admin-table{width:100%; border-collapse:collapse; font-family:var(--ui); font-size:.84rem;}
+.admin-table th, .admin-table td{text-align:left; padding:10px 12px; border-bottom:1px solid var(--line);}
+.admin-table th{background:var(--ivory-deep); font-weight:700; font-size:.72rem; text-transform:uppercase; color:var(--maroon-dark);}
+.admin-table tr:hover td{background:var(--ivory);}
+
+</style>
+</head>
+<body data-lang="te">
+
+<!-- ===================== NAV ===================== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#home" class="brand">
+      <img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTIwIDEyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGRlZnM+CjxyYWRpYWxHcmFkaWVudCBpZD0iaGFsb0dyYWQiIGN4PSI1MCUiIGN5PSI0MiUiIHI9IjU1JSI+CjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNGRkY2RDgiLz48c3RvcCBvZmZzZXQ9IjU1JSIgc3RvcC1jb2xvcj0iI0U0Qzc2NSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI0M5QTIyNyIgc3RvcC1vcGFjaXR5PSIwIi8+CjwvcmFkaWFsR3JhZGllbnQ+CjxsaW5lYXJHcmFkaWVudCBpZD0ic2tpbkdyYWQiIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj4KPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0YzQ0JBMCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI0U4Qjg4OCIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+CjxjaXJjbGUgY2xhc3M9ImhhbG8tcmluZyIgY3g9IjYwIiBjeT0iNTQiIHI9IjQ2IiBmaWxsPSJ1cmwoI2hhbG9HcmFkKSIvPgo8IS0tIGhhaXIgLS0+CjxwYXRoIGQ9Ik0zMiA1MCBRMjggMjYgNjAgMjIgUTkyIDI2IDg4IDUwIFE5MCA2NiA4NCA3MCBRODYgNTAgNjAgNDQgUTM0IDUwIDM2IDcwIFEzMCA2NiAzMiA1MFoiIGZpbGw9IiMyNDFBMTciLz4KPCEtLSBmYWNlIC0tPgo8ZWxsaXBzZSBjeD0iNjAiIGN5PSI1NiIgcng9IjI0IiByeT0iMjciIGZpbGw9InVybCgjc2tpbkdyYWQpIi8+CjwhLS0gZWFycyArIGVhcnJpbmdzIC0tPgo8Y2lyY2xlIGN4PSIzNSIgY3k9IjU4IiByPSI0IiBmaWxsPSIjQzlBMjI3Ii8+CjxjaXJjbGUgY3g9Ijg1IiBjeT0iNTgiIHI9IjQiIGZpbGw9IiNDOUEyMjciLz4KPCEtLSB0aWxhayAtLT4KPHBhdGggZD0iTTUwIDM0IEw1MCA0NCIgc3Ryb2tlPSIjRjdGMEUzIiBzdHJva2Utd2lkdGg9IjIuNSIvPgo8cGF0aCBkPSJNNjAgMzIgTDYwIDQ0IiBzdHJva2U9IiNGN0YwRTMiIHN0cm9rZS13aWR0aD0iMi41Ii8+CjxwYXRoIGQ9Ik03MCAzNCBMNzAgNDQiIHN0cm9rZT0iI0Y3RjBFMyIgc3Ryb2tlLXdpZHRoPSIyLjUiLz4KPGNpcmNsZSBjeD0iNjAiIGN5PSI0NyIgcj0iMyIgZmlsbD0iIzdBMUYyQiIvPgo8IS0tIGV5ZWJyb3dzICsgZXllcyAtLT4KPHBhdGggZD0iTTQ4IDUyIFE1MyA0OSA1OCA1MiIgc3Ryb2tlPSIjMjQxQTE3IiBzdHJva2Utd2lkdGg9IjEuNiIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjxwYXRoIGQ9Ik02MiA1MiBRNjcgNDkgNzIgNTIiIHN0cm9rZT0iIzI0MUExNyIgc3Ryb2tlLXdpZHRoPSIxLjYiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8ZWxsaXBzZSBjeD0iNTMiIGN5PSI1NyIgcng9IjQuMiIgcnk9IjIuNiIgZmlsbD0iIzI0MUExNyIvPgo8ZWxsaXBzZSBjeD0iNjciIGN5PSI1NyIgcng9IjQuMiIgcnk9IjIuNiIgZmlsbD0iIzI0MUExNyIvPgo8IS0tIGdlbnRsZSBzbWlsZSAtLT4KPHBhdGggZD0iTTUzIDY4IFE2MCA3MiA2NyA2OCIgc3Ryb2tlPSIjN0ExRjJCIiBzdHJva2Utd2lkdGg9IjEuNiIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjwhLS0gcGVhY29jayBmZWF0aGVyIGJlc2lkZSBoZWFkIC0tPgo8ZyBjbGFzcz0iZmVhdGhlci1zd2F5IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg5MywzMCkiPgo8ZWxsaXBzZSBjeD0iMCIgY3k9IjAiIHJ4PSI3IiByeT0iMTMiIGZpbGw9IiMwRjUyNTciLz4KPGVsbGlwc2UgY3g9IjAiIGN5PSIwIiByeD0iNCIgcnk9IjgiIGZpbGw9IiNFNEM3NjUiIG9wYWNpdHk9IjAuODUiLz4KPGxpbmUgeDE9IjAiIHkxPSIxMiIgeDI9IjAiIHkyPSIzNCIgc3Ryb2tlPSIjQzlBMjI3IiBzdHJva2Utd2lkdGg9IjIiLz4KPC9nPgo8IS0tIHNtYWxsIGJsZXNzaW5nIGhhbmQgLS0+CjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE4LDY2KSI+CjxwYXRoIGQ9Ik0wIDIwIFEtMiA2IDQgLTIgUTcgLTYgOCAtMSBROSAtNiAxMiAtMiBRMTMgMyAxMiA4IFExNSA0IDE2IDggUTE3IDE0IDEyIDIyIFE2IDI2IDAgMjBaIiBmaWxsPSJ1cmwoI3NraW5HcmFkKSIgc3Ryb2tlPSIjQzlBMjI3IiBzdHJva2Utd2lkdGg9IjAuNiIvPgo8L2c+Cjwvc3ZnPgo=" alt="Lord Subrahmanya" class="brand-logo">
+      <span>
+        <span class="t-en">Subrahmanya Devastanam</span>
+        <span class="t-te">సుబ్రహ్మణ్య దేవస్థానం</span>
+      </span>
+    </a>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg>
+        <span id="langToggleLabel">English</span>
+      </button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#history"><span class="t-en">History</span><span class="t-te">చరిత్ర</span></a></li>
+      <li><a href="#rituals"><span class="t-en">Rituals &amp; Utsavams</span><span class="t-te">నిత్య పూజలు &amp; ఉత్సవాలు</span></a></li>
+      <li><a href="#seva"><span class="t-en">Seva Booking</span><span class="t-te">సేవా బుకింగ్</span></a></li>
+      <li><a href="#gallery"><span class="t-en">Gallery</span><span class="t-te">గ్యాలరీ</span></a></li>
+      <li><a href="#store"><span class="t-en">Temple Store</span><span class="t-te">ఆలయ దుకాణం</span></a></li>
+      <li><a href="#contact"><span class="t-en">Contact</span><span class="t-te">సంప్రదించండి</span></a></li>
+      <li><a href="#" id="navAuthLink" class="nav-auth-link"><span class="t-en">Login</span><span class="t-te">లాగిన్</span></a></li>
+      <li><a href="#donate" class="nav-cta"><span class="t-en">Donate</span><span class="t-te">విరాళం</span></a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero" id="home">
+  <div class="hero-slider" id="heroSlider">
+    <div class="hero-slide"><img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAwIDMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0ic2t5YmciIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj4KPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzBGNTI1NyIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzdBMUYyQiIvPgo8L2xpbmVhckdyYWRpZW50Pgo8bGluZWFyR3JhZGllbnQgaWQ9ImdvcHVyYW1Hb2xkIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+CjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNFNEM3NjUiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNDOUEyMjciLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0idXJsKCNza3liZykiLz4KPGNpcmNsZSBjeD0iMzMwIiBjeT0iNTUiIHI9IjI4IiBmaWxsPSIjRjdGMEUzIiBvcGFjaXR5PSIwLjg1Ii8+CjwhLS0gdGllcmVkIGdvcHVyYW0gLS0+CjxnIGZpbGw9InVybCgjZ29wdXJhbUdvbGQpIiBzdHJva2U9IiNGN0YwRTMiIHN0cm9rZS13aWR0aD0iMS41Ij4KPHJlY3QgeD0iMTUwIiB5PSIyMzAiIHdpZHRoPSIxMDAiIGhlaWdodD0iNjAiLz4KPHJlY3QgeD0iMTYwIiB5PSIyMDAiIHdpZHRoPSI4MCIgaGVpZ2h0PSIzMCIvPgo8cmVjdCB4PSIxNzAiIHk9IjE3MiIgd2lkdGg9IjYwIiBoZWlnaHQ9IjI4Ii8+CjxyZWN0IHg9IjE4MCIgeT0iMTQ2IiB3aWR0aD0iNDAiIGhlaWdodD0iMjYiLz4KPHJlY3QgeD0iMTg4IiB5PSIxMjAiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNiIvPgo8cGF0aCBkPSJNMTg4IDEyMCBMMjAwIDk2IEwyMTIgMTIwIFoiLz4KPGNpcmNsZSBjeD0iMjAwIiBjeT0iOTAiIHI9IjYiIGZpbGw9IiNGN0YwRTMiLz4KPC9nPgo8IS0tIHNpZGUgcGlsbGFycyAtLT4KPHJlY3QgeD0iMTIwIiB5PSIyMzAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI2MCIgZmlsbD0iIzdBMUYyQiIgc3Ryb2tlPSIjRTRDNzY1IiBzdHJva2Utd2lkdGg9IjEiLz4KPHJlY3QgeD0iMjYwIiB5PSIyMzAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI2MCIgZmlsbD0iIzdBMUYyQiIgc3Ryb2tlPSIjRTRDNzY1IiBzdHJva2Utd2lkdGg9IjEiLz4KPCEtLSBzdGVwcyAtLT4KPHJlY3QgeD0iMTAwIiB5PSIyOTAiIHdpZHRoPSIyMDAiIGhlaWdodD0iOCIgZmlsbD0iI0VGRTRDQyIvPgo8cmVjdCB4PSI5MCIgeT0iMjk4IiB3aWR0aD0iMjIwIiBoZWlnaHQ9IjIiIGZpbGw9IiNERUQwQUMiLz4KPCEtLSBkZWNvcmF0aXZlIGRvdHMgb24gdGllcnMgLS0+CjxnIGZpbGw9IiM3QTFGMkIiPgo8Y2lyY2xlIGN4PSIxNjUiIGN5PSIyMTUiIHI9IjIiLz48Y2lyY2xlIGN4PSIxODUiIGN5PSIyMTUiIHI9IjIiLz48Y2lyY2xlIGN4PSIyMDUiIGN5PSIyMTUiIHI9IjIiLz48Y2lyY2xlIGN4PSIyMjUiIGN5PSIyMTUiIHI9IjIiLz4KPGNpcmNsZSBjeD0iMTgwIiBjeT0iMTg2IiByPSIyIi8+PGNpcmNsZSBjeD0iMjAwIiBjeT0iMTg2IiByPSIyIi8+PGNpcmNsZSBjeD0iMjIwIiBjeT0iMTg2IiByPSIyIi8+CjwvZz4KPC9zdmc+Cg==" alt="Temple view 1"></div>
+    <div class="hero-slide"><img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iZHVza1NreSIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgo8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjM0ExNTIwIi8+PHN0b3Agb2Zmc2V0PSI2MCUiIHN0b3AtY29sb3I9IiM3QTFGMkIiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNDOUEyMjciLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0idXJsKCNkdXNrU2t5KSIvPgo8Y2lyY2xlIGN4PSI2NTAiIGN5PSI5MCIgcj0iNDUiIGZpbGw9IiNGN0YwRTMiIG9wYWNpdHk9IjAuOSIvPgo8ZyBmaWxsPSIjMEEzQjNGIj4KPHJlY3QgeD0iMzAwIiB5PSIzODAiIHdpZHRoPSIyMDAiIGhlaWdodD0iMTAwIi8+CjxyZWN0IHg9IjMyMCIgeT0iMzMwIiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjU1Ii8+CjxyZWN0IHg9IjM0MCIgeT0iMjg1IiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjUwIi8+CjxyZWN0IHg9IjM2MCIgeT0iMjQwIiB3aWR0aD0iODAiIGhlaWdodD0iNTAiLz4KPHJlY3QgeD0iMzc1IiB5PSIyMDAiIHdpZHRoPSI1MCIgaGVpZ2h0PSI0NSIvPgo8cGF0aCBkPSJNMzc1IDIwMCBMNDAwIDE2NSBMNDI1IDIwMCBaIi8+CjwvZz4KPGcgZmlsbD0iI0U0Qzc2NSIgb3BhY2l0eT0iMC45Ij4KPGNpcmNsZSBjeD0iMzMwIiBjeT0iNDA1IiByPSI0Ii8+PGNpcmNsZSBjeD0iMzYwIiBjeT0iNDA1IiByPSI0Ii8+PGNpcmNsZSBjeD0iNDQwIiBjeT0iNDA1IiByPSI0Ii8+PGNpcmNsZSBjeD0iNDcwIiBjeT0iNDA1IiByPSI0Ii8+CjxjaXJjbGUgY3g9IjM0NSIgY3k9IjM1NSIgcj0iMy41Ii8+PGNpcmNsZSBjeD0iNDU1IiBjeT0iMzU1IiByPSIzLjUiLz4KPGNpcmNsZSBjeD0iMzYwIiBjeT0iMzEwIiByPSIzIi8+PGNpcmNsZSBjeD0iNDQwIiBjeT0iMzEwIiByPSIzIi8+CjwvZz4KPHJlY3QgeD0iMjUwIiB5PSI0ODAiIHdpZHRoPSIzMDAiIGhlaWdodD0iMTAiIGZpbGw9IiNFRkU0Q0MiIG9wYWNpdHk9IjAuNyIvPgo8cmVjdCB4PSIxNTAiIHk9IjQ2MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjMEEzQjNGIi8+CjxyZWN0IHg9IjYzMCIgeT0iNDYwIiB3aWR0aD0iMjAiIGhlaWdodD0iMzAiIGZpbGw9IiMwQTNCM0YiLz4KPGNpcmNsZSBjeD0iMTYwIiBjeT0iNDUwIiByPSI2IiBmaWxsPSIjRTRDNzY1Ii8+CjxjaXJjbGUgY3g9IjY0MCIgY3k9IjQ1MCIgcj0iNiIgZmlsbD0iI0U0Qzc2NSIvPgo8L3N2Zz4K" alt="Temple view 2"></div>
+    <div class="hero-slide"><img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iZGF5U2t5IiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+CjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwRjUyNTciLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNFNEM3NjUiLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0idXJsKCNkYXlTa3kpIi8+CjxjaXJjbGUgY3g9IjEyMCIgY3k9IjgwIiByPSIzOCIgZmlsbD0iI0Y3RjBFMyIgb3BhY2l0eT0iMC44Ii8+CjxnIGZpbGw9IiM3QTFGMkIiIHN0cm9rZT0iI0U0Qzc2NSIgc3Ryb2tlLXdpZHRoPSIyIj4KPHJlY3QgeD0iMjIwIiB5PSIyMDAiIHdpZHRoPSIzNjAiIGhlaWdodD0iMjgwIi8+CjwvZz4KPGcgZmlsbD0iI0M5QTIyNyI+CjxyZWN0IHg9IjI0MCIgeT0iMjIwIiB3aWR0aD0iMzAiIGhlaWdodD0iMjYwIi8+CjxyZWN0IHg9IjMwMCIgeT0iMjIwIiB3aWR0aD0iMzAiIGhlaWdodD0iMjYwIi8+CjxyZWN0IHg9IjQ3MCIgeT0iMjIwIiB3aWR0aD0iMzAiIGhlaWdodD0iMjYwIi8+CjxyZWN0IHg9IjUzMCIgeT0iMjIwIiB3aWR0aD0iMzAiIGhlaWdodD0iMjYwIi8+CjwvZz4KPHBhdGggZD0iTTI0MCAyMjAgTDQwMCAxNDAgTDU2MCAyMjAgWiIgZmlsbD0iI0U0Qzc2NSIvPgo8cmVjdCB4PSIzODAiIHk9IjE1MCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjN0ExRjJCIi8+CjxwYXRoIGQ9Ik0zODAgMTUwIEw0MDAgMTIwIEw0MjAgMTUwIFoiIGZpbGw9IiNDOUEyMjciLz4KPHJlY3QgeD0iMzYwIiB5PSIzODAiIHdpZHRoPSI4MCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiMwQTNCM0YiLz4KPHBhdGggZD0iTTM2MCAzODAgUTQwMCAzNDAgNDQwIDM4MCBaIiBmaWxsPSIjMEEzQjNGIi8+CjxyZWN0IHg9IjE1MCIgeT0iNDcwIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjE0IiBmaWxsPSIjRUZFNENDIi8+Cjwvc3ZnPgo=" alt="Temple view 3"></div>
+    <div class="hero-slide"><img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAwIDMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0icG90R3JhZCIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgo8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjRTRDNzY1Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjN0ExRjJCIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNGN0YwRTMiLz4KPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjAwLDE2MCkiPgo8cGF0aCBkPSJNLTggLTkwIEwgOCAtOTAgTCA4IC03MCBMIC04IC03MCBaIiBmaWxsPSIjMEY1MjU3Ii8+CjxlbGxpcHNlIGN4PSIwIiBjeT0iLTcwIiByeD0iMTQiIHJ5PSI2IiBmaWxsPSIjQzlBMjI3Ii8+CjxwYXRoIGQ9Ik0tNDUgLTEwIFEgLTQ1IC02MCAwIC02NiBRIDQ1IC02MCA0NSAtMTAgUSA0NSA0MCAwIDU1IFEgLTQ1IDQwIC00NSAtMTAgWiIgZmlsbD0idXJsKCNwb3RHcmFkKSIgc3Ryb2tlPSIjN0ExRjJCIiBzdHJva2Utd2lkdGg9IjIiLz4KPGVsbGlwc2UgY3g9IjAiIGN5PSItNDAiIHJ4PSI0NiIgcnk9IjEwIiBmaWxsPSIjMEY1MjU3IiBvcGFjaXR5PSIwLjUiLz4KPGVsbGlwc2UgY3g9IjAiIGN5PSIwIiByeD0iNDYiIHJ5PSIxMCIgZmlsbD0iIzBGNTI1NyIgb3BhY2l0eT0iMC4zIi8+CjxnIGZpbGw9IiMwQTNCM0YiIG9wYWNpdHk9IjAuNSI+CjxwYXRoIGQ9Ik0tMzAgLTcwIFEgMCAtNTAgMzAgLTcwIiBzdHJva2U9IiMwQTNCM0YiIHN0cm9rZS13aWR0aD0iMS41IiBmaWxsPSJub25lIi8+CjwvZz4KPCEtLSBtYW5nbyBsZWF2ZXMgLS0+CjxwYXRoIGQ9Ik0tMTUgLTkwIFEgLTMwIC0xMDAgLTIwIC0xMTUgUSAtNSAtMTA1IC0xNSAtOTAgWiIgZmlsbD0iIzBGNTI1NyIvPgo8cGF0aCBkPSJNMCAtOTAgUSAtNSAtMTA1IDUgLTExOCBRIDE1IC0xMDUgMCAtOTAgWiIgZmlsbD0iIzBGNTI1NyIvPgo8cGF0aCBkPSJNMTUgLTkwIFEgMzAgLTEwMCAyMCAtMTE1IFEgNSAtMTA1IDE1IC05MCBaIiBmaWxsPSIjMEY1MjU3Ii8+CjwvZz4KPC9zdmc+Cg==" alt="Temple view 4"></div>
+    <div class="hero-slider-overlay"></div>
+  </div>
+  <div class="hero-slider-dots" id="heroDots"></div>
+  <div class="hero-inner reveal in">
+    <p class="eyebrow"><span class="t-en">Established 1966 &nbsp;•&nbsp; 60 Years of Devotion</span><span class="t-te">స్థాపన 1966 &nbsp;•&nbsp; 60 సంవత్సరాల భక్తి</span></p>
+    <h1 class="hero-fullname">
+      <span class="t-en">Sri Sri Sri Valli Devasena Sametha<br>Subrahmanyeswara Swamy Temple<br><span class="place">Vilasavilli</span></span>
+      <span class="t-te">శ్రీ శ్రీ శ్రీ వల్లీ దేవసేన సమేత<br>సుబ్రహ్మణ్యేశ్వర స్వామి దేవస్థానం<br><span class="place">విలాసవిల్లి</span></span>
+    </h1>
+    <p class="lede">
+      <span class="t-en">A sixty-year-old abode of Lord Subrahmanya — where daily rituals, ancient utsavams, and a family's living memory continue to bless every visitor.</span>
+      <span class="t-te">అరవై సంవత్సరాల చరిత్ర కలిగిన సుబ్రహ్మణ్య స్వామి ఆలయం — నిత్య పూజలు, ప్రాచీన ఉత్సవాలు మరియు ఒక కుటుంబం యొక్క జ్ఞాపకాలు ప్రతి భక్తుడిని ఆశీర్వదిస్తూనే ఉన్నాయి.</span>
+    </p>
+    <div class="hero-ctas">
+      <a href="#rituals" class="btn btn-gold"><span class="t-en">Today's Rituals</span><span class="t-te">నేటి పూజా కార్యక్రమాలు</span></a>
+      <a href="#donate" class="btn btn-outline"><span class="t-en">Donate Now</span><span class="t-te">విరాళం ఇవ్వండి</span></a>
+    </div>
+    <div class="hero-stats">
+      <div><span class="num">60+</span><span class="label"><span class="t-en">Years of Seva</span><span class="t-te">సేవా సంవత్సరాలు</span></span></div>
+      <div><span class="num">12</span><span class="label"><span class="t-en">Annual Utsavams</span><span class="t-te">వార్షిక ఉత్సవాలు</span></span></div>
+      <div><span class="num">365</span><span class="label"><span class="t-en">Days of Daily Pooja</span><span class="t-te">నిత్య పూజా దినాలు</span></span></div>
+    </div>
+  </div>
+  <svg class="hero-gopuram" viewBox="0 0 1440 180" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 180 L0 140 L60 140 L60 110 L120 110 L120 80 L180 80 L200 40 L220 80 L280 80 L280 110 L340 110 L340 140 L420 140 L420 100 L460 60 L500 100 L500 140 L600 140 L600 90 L650 40 L700 90 L700 140 L820 140 L820 100 L860 60 L900 100 L900 140 L1000 140 L1000 110 L1060 110 L1060 80 L1120 80 L1140 40 L1160 80 L1220 80 L1220 110 L1280 110 L1280 140 L1440 140 L1440 180 Z" fill="#F7F0E3"/>
+  </svg>
+</header>
+
+<!-- ===================== ABOUT ===================== -->
+<section class="section section--tight">
+  <div class="container">
+    <div class="feather-divider">
+      <span class="line"></span>
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8 6 6 12 12 22C18 12 16 6 12 2Z" stroke="#C9A227" stroke-width="1.4"/><path d="M12 6V18" stroke="#C9A227" stroke-width="1"/></svg>
+      <span class="line"></span>
+    </div>
+    <div class="two-col">
+      <div>
+        <p class="eyebrow"><span class="t-en">Welcome</span><span class="t-te">స్వాగతం</span></p>
+        <h2><span class="t-en">A Sacred Home for Six Decades</span><span class="t-te">అరవై సంవత్సరాల పవిత్ర నివాసం</span></h2>
+        <p>
+          <span class="t-en"><!-- EDIT: Replace with a short welcome note from the temple trust/priests. -->Since 1966, this temple has stood as a spiritual home for devotees of Lord Subrahmanya, offering daily worship, seasonal utsavams, and a space for the community to gather in devotion. Every stone here carries the faith of the generations who built and sustained it.</span>
+          <span class="t-te"><!-- EDIT: ఆలయ ధర్మకర్తలు/పూజారుల నుండి స్వాగత సందేశం ఇక్కడ చేర్చండి -->1966 నుండి, ఈ ఆలయం సుబ్రహ్మణ్య స్వామి భక్తులకు ఆధ్యాత్మిక నివాసంగా నిలిచింది. నిత్య పూజలు, ఋతువుల ఉత్సవాలు మరియు భక్తులు ఒకచోట చేరే పవిత్ర స్థలంగా విలసిల్లుతోంది. ఇక్కడి ప్రతి రాయిలో దీన్ని నిర్మించి, పోషించిన తరాల విశ్వాసం నిండి ఉంది.</span>
+        </p>
+        <a href="#history" class="btn btn-maroon"><span class="t-en">Read the Full History</span><span class="t-te">పూర్తి చరిత్ర చదవండి</span></a>
+      </div>
+      <div class="img-frame" style="aspect-ratio:4/3;">
+        <img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAwIDMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0ic2t5YmciIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj4KPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzBGNTI1NyIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzdBMUYyQiIvPgo8L2xpbmVhckdyYWRpZW50Pgo8bGluZWFyR3JhZGllbnQgaWQ9ImdvcHVyYW1Hb2xkIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+CjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNFNEM3NjUiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNDOUEyMjciLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0idXJsKCNza3liZykiLz4KPGNpcmNsZSBjeD0iMzMwIiBjeT0iNTUiIHI9IjI4IiBmaWxsPSIjRjdGMEUzIiBvcGFjaXR5PSIwLjg1Ii8+CjwhLS0gdGllcmVkIGdvcHVyYW0gLS0+CjxnIGZpbGw9InVybCgjZ29wdXJhbUdvbGQpIiBzdHJva2U9IiNGN0YwRTMiIHN0cm9rZS13aWR0aD0iMS41Ij4KPHJlY3QgeD0iMTUwIiB5PSIyMzAiIHdpZHRoPSIxMDAiIGhlaWdodD0iNjAiLz4KPHJlY3QgeD0iMTYwIiB5PSIyMDAiIHdpZHRoPSI4MCIgaGVpZ2h0PSIzMCIvPgo8cmVjdCB4PSIxNzAiIHk9IjE3MiIgd2lkdGg9IjYwIiBoZWlnaHQ9IjI4Ii8+CjxyZWN0IHg9IjE4MCIgeT0iMTQ2IiB3aWR0aD0iNDAiIGhlaWdodD0iMjYiLz4KPHJlY3QgeD0iMTg4IiB5PSIxMjAiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNiIvPgo8cGF0aCBkPSJNMTg4IDEyMCBMMjAwIDk2IEwyMTIgMTIwIFoiLz4KPGNpcmNsZSBjeD0iMjAwIiBjeT0iOTAiIHI9IjYiIGZpbGw9IiNGN0YwRTMiLz4KPC9nPgo8IS0tIHNpZGUgcGlsbGFycyAtLT4KPHJlY3QgeD0iMTIwIiB5PSIyMzAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI2MCIgZmlsbD0iIzdBMUYyQiIgc3Ryb2tlPSIjRTRDNzY1IiBzdHJva2Utd2lkdGg9IjEiLz4KPHJlY3QgeD0iMjYwIiB5PSIyMzAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI2MCIgZmlsbD0iIzdBMUYyQiIgc3Ryb2tlPSIjRTRDNzY1IiBzdHJva2Utd2lkdGg9IjEiLz4KPCEtLSBzdGVwcyAtLT4KPHJlY3QgeD0iMTAwIiB5PSIyOTAiIHdpZHRoPSIyMDAiIGhlaWdodD0iOCIgZmlsbD0iI0VGRTRDQyIvPgo8cmVjdCB4PSI5MCIgeT0iMjk4IiB3aWR0aD0iMjIwIiBoZWlnaHQ9IjIiIGZpbGw9IiNERUQwQUMiLz4KPCEtLSBkZWNvcmF0aXZlIGRvdHMgb24gdGllcnMgLS0+CjxnIGZpbGw9IiM3QTFGMkIiPgo8Y2lyY2xlIGN4PSIxNjUiIGN5PSIyMTUiIHI9IjIiLz48Y2lyY2xlIGN4PSIxODUiIGN5PSIyMTUiIHI9IjIiLz48Y2lyY2xlIGN4PSIyMDUiIGN5PSIyMTUiIHI9IjIiLz48Y2lyY2xlIGN4PSIyMjUiIGN5PSIyMTUiIHI9IjIiLz4KPGNpcmNsZSBjeD0iMTgwIiBjeT0iMTg2IiByPSIyIi8+PGNpcmNsZSBjeD0iMjAwIiBjeT0iMTg2IiByPSIyIi8+PGNpcmNsZSBjeD0iMjIwIiBjeT0iMTg2IiByPSIyIi8+CjwvZz4KPC9zdmc+Cg==" alt="Temple gopuram illustration" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius);">
+        <span class="img-caption"><span class="t-en">Illustrative artwork — swap for your real temple photo (1200×900px)</span><span class="t-te">నమూనా చిత్రం — నిజమైన ఆలయ ఫోటోతో మార్చండి (1200×900px)</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== HISTORY ===================== -->
+<section class="section" id="history">
+  <div class="container">
+    <div class="section-head center">
+      <p class="eyebrow"><span class="t-en">Our Story</span><span class="t-te">మా చరిత్ర</span></p>
+      <h2><span class="t-en">Temple History</span><span class="t-te">ఆలయ చరిత్ర</span></h2>
+      <p>
+        <span class="t-en"><!-- EDIT: Full temple history --> Placeholder text: describe how the temple was founded in 1966, who consecrated the deity, notable architectural features, and any renovations over six decades. Replace this paragraph with the temple's documented history.</span>
+        <span class="t-te"><!-- EDIT: పూర్తి ఆలయ చరిత్ర --> నమూనా వచనం: ఆలయం 1966లో ఎలా స్థాపించబడింది, మూర్తిని ఎవరు ప్రతిష్టించారు, విశేష నిర్మాణ లక్షణాలు మరియు గత అరవై సంవత్సరాలలో జరిగిన పునర్నిర్మాణాలు వివరించండి. ఈ పేరాను ఆలయ వాస్తవ చరిత్రతో మార్చండి.</span>
+      </p>
+    </div>
+
+    <div class="story-card reveal">
+      <p class="eyebrow" style="margin-bottom:4px;"><span class="t-en">A Family's Living Memory</span><span class="t-te">ఒక కుటుంబం యొక్క సజీవ జ్ఞాపకం</span></p>
+      <h3><span class="t-en">The Story Passed Down From Grandparents</span><span class="t-te">తాతయ్య, అమ్మమ్మల నుండి వచ్చిన కథ</span></h3>
+      <p>
+        <span class="t-en"><!-- EDIT: Write out the grandparents' story here in full --> Placeholder: This is where the story heard from late grandparents is written in full — the memory of how the temple came to be, the devotion of the family through generations, and the tale that is still told today. Replace this with the real story.</span>
+        <span class="t-te"><!-- EDIT: తాతయ్య, అమ్మమ్మల కథను పూర్తిగా ఇక్కడ రాయండి --> నమూనా: దివంగత తాతయ్య, అమ్మమ్మల నుండి విన్న కథ ఇక్కడ పూర్తిగా రాయబడుతుంది — ఆలయం ఎలా ఏర్పడిందనే జ్ఞాపకం, తరతరాలుగా కుటుంబం చూపిన భక్తి, మరియు నేటికీ చెప్పుకునే కథ. దీనిని నిజమైన కథతో మార్చండి.</span>
+      </p>
+      <div class="story-video img-frame" style="position:relative;">
+        <img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAwIDMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGRlZnM+CjxyYWRpYWxHcmFkaWVudCBpZD0iZmxhbWVHcmFkIiBjeD0iNTAlIiBjeT0iMzAlIiByPSI3MCUiPgo8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjRkZGM0M0Ii8+PHN0b3Agb2Zmc2V0PSI1MCUiIHN0b3AtY29sb3I9IiNFNEM3NjUiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNDOUEyMjciLz4KPC9yYWRpYWxHcmFkaWVudD4KPGxpbmVhckdyYWRpZW50IGlkPSJsYW1wQm9keSIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgo8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjQzlBMjI3Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjN0ExRjJCIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiMwQTNCM0YiLz4KPGVsbGlwc2UgY3g9IjIwMCIgY3k9IjE1MCIgcng9IjE0MCIgcnk9IjE0MCIgZmlsbD0iIzBGNTI1NyIgb3BhY2l0eT0iMC40Ii8+CjxwYXRoIGQ9Ik0xOTUgMTMwIFEgMTg1IDEwMCAyMDAgNzAgUSAyMTUgMTAwIDIwNSAxMzAgUSAyMDAgMTE1IDE5NSAxMzAgWiIgZmlsbD0idXJsKCNmbGFtZUdyYWQpIi8+CjxlbGxpcHNlIGN4PSIyMDAiIGN5PSIyMDAiIHJ4PSI3MCIgcnk9IjE4IiBmaWxsPSJ1cmwoI2xhbXBCb2R5KSIvPgo8cGF0aCBkPSJNMTMwIDIwMCBRIDEzMCAxNzUgMTY1IDE2OCBMIDIzNSAxNjggUSAyNzAgMTc1IDI3MCAyMDAgWiIgZmlsbD0idXJsKCNsYW1wQm9keSkiLz4KPGVsbGlwc2UgY3g9IjIwMCIgY3k9IjE2OCIgcng9IjM1IiByeT0iOSIgZmlsbD0iI0U0Qzc2NSIvPgo8Y2lyY2xlIGN4PSIxMjAiIGN5PSIxOTUiIHI9IjQiIGZpbGw9IiNFNEM3NjUiLz48Y2lyY2xlIGN4PSIyODAiIGN5PSIxOTUiIHI9IjQiIGZpbGw9IiNFNEM3NjUiLz4KPGcgZmlsbD0iI0U0Qzc2NSIgb3BhY2l0eT0iMC43Ij4KPGNpcmNsZSBjeD0iOTAiIGN5PSIxMDAiIHI9IjIiLz48Y2lyY2xlIGN4PSIzMjAiIGN5PSI4MCIgcj0iMiIvPjxjaXJjbGUgY3g9IjYwIiBjeT0iMTgwIiByPSIxLjUiLz48Y2lyY2xlIGN4PSIzNDAiIGN5PSIxNTAiIHI9IjIiLz4KPC9nPgo8L3N2Zz4K" alt="Heritage story video placeholder" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius);">
+        <div class="play-overlay">
+          <svg viewBox="0 0 24 24" fill="#F7F0E3"><circle cx="12" cy="12" r="11" fill="rgba(10,59,63,0.55)" stroke="#E4C765" stroke-width="1.2"/><path d="M10 8l6 4-6 4V8z"/></svg>
+        </div>
+        <span class="img-caption" style="position:absolute; bottom:8px; left:8px; background:rgba(10,59,63,0.75); color:#F7F0E3; padding:4px 10px; border-radius:20px;">
+          <span class="t-en">Replace with your video — 1920×1080px MP4</span>
+          <span class="t-te">మీ వీడియోతో మార్చండి — 1920×1080px MP4</span>
+        </span>
+      </div>
+      <p class="editnote">
+        <span class="t-en">💡 A ready-made script/storyboard for an AI-generated video of this story is in video-script.md.</span>
+        <span class="t-te">💡 ఈ కథ కోసం AI వీడియో స్క్రిప్ట్ video-script.md ఫైల్‌లో సిద్ధంగా ఉంది.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RITUALS & UTSAVAMS ===================== -->
+<section class="section section--deep" id="rituals">
+  <div class="container">
+    <div class="section-head center">
+      <p class="eyebrow"><span class="t-en">Worship</span><span class="t-te">ఆరాధన</span></p>
+      <h2><span class="t-en">Daily Rituals &amp; Yearly Utsavams</span><span class="t-te">నిత్య పూజలు &amp; వార్షిక ఉత్సవాలు</span></h2>
+      <p>
+        <span class="t-en">The rhythm of worship at the temple — from the first bell of the day to the grand annual celebrations.</span>
+        <span class="t-te">ఆలయంలో ఆరాధనా క్రమం — రోజు మొదటి గంట నుండి గొప్ప వార్షిక వేడుకల వరకు.</span>
+      </p>
+    </div>
+
+    <h3 style="color:#E4C765;"><span class="t-en">Daily Pooja Timetable</span><span class="t-te">నిత్య పూజా కాలపట్టిక</span></h3>
+    <table class="timetable">
+      <thead><tr>
+        <th><span class="t-en">Time</span><span class="t-te">సమయం</span></th>
+        <th><span class="t-en">Ritual</span><span class="t-te">పూజ</span></th>
+        <th><span class="t-en">Description</span><span class="t-te">వివరణ</span></th>
+      </tr></thead>
+      <tbody>
+        <tr><td>5:30 AM</td><td>Suprabhatam <span class="t-te">సుప్రభాతం</span></td><td><span class="t-en">Waking of the deity with devotional verses</span><span class="t-te">భక్తి శ్లోకాలతో స్వామిని మేల్కొల్పడం</span></td></tr>
+        <tr><td>6:30 AM</td><td>Abhishekam <span class="t-te">అభిషేకం</span></td><td><span class="t-en">Sacred bath of the deity with milk, water, honey</span><span class="t-te">పాలు, నీరు, తేనెతో స్వామికి పవిత్ర స్నానం</span></td></tr>
+        <tr><td>8:00 AM</td><td>Nitya Archana <span class="t-te">నిత్య అర్చన</span></td><td><span class="t-en">Daily worship with flowers and chanting of names</span><span class="t-te">పుష్పాలతో, నామస్మరణతో నిత్య పూజ</span></td></tr>
+        <tr><td>12:00 PM</td><td>Madhyahna Pooja <span class="t-te">మధ్యాహ్న పూజ</span></td><td><span class="t-en">Midday offering and naivedyam</span><span class="t-te">మధ్యాహ్న నైవేద్యం సమర్పణ</span></td></tr>
+        <tr><td>6:00 PM</td><td>Sandhya Deeparadhana <span class="t-te">సంధ్యా దీపారాధన</span></td><td><span class="t-en">Evening lamp worship</span><span class="t-te">సాయంకాల దీప పూజ</span></td></tr>
+        <tr><td>8:30 PM</td><td>Ekanta Seva <span class="t-te">ఏకాంత సేవ</span></td><td><span class="t-en">Final worship before closing</span><span class="t-te">ఆలయం మూసే ముందు చివరి పూజ</span></td></tr>
+      </tbody>
+    </table>
+    <p class="editnote"><span class="t-en">💡 Placeholder timings — replace with your temple's actual daily schedule.</span><span class="t-te">💡 నమూనా సమయాలు — మీ ఆలయ వాస్తవ కాలపట్టికతో మార్చండి.</span></p>
+
+    <h3 style="color:#E4C765; margin-top:56px;"><span class="t-en">Yearly Utsavams</span><span class="t-te">వార్షిక ఉత్సవాలు</span></h3>
+    <div class="card-grid">
+      <div class="card"><span class="tag">Nov / Dec</span><h3>Skanda Sashti <span class="t-te">స్కంద షష్ఠి</span></h3><p><span class="t-en">Six-day festival celebrating Lord Subrahmanya's victory over evil, culminating in Soorasamharam.</span><span class="t-te">సుబ్రహ్మణ్య స్వామి దుష్టశక్తులపై విజయాన్ని పురస్కరించుకుని ఆరు రోజుల ఉత్సవం, సూరసంహారంతో ముగింపు.</span></p></div>
+      <div class="card"><span class="tag">Dec / Jan</span><h3>Kartikai Deepam <span class="t-te">కార్తీక దీపం</span></h3><p><span class="t-en">Festival of lights with a grand deepam atop the temple tower.</span><span class="t-te">ఆలయ గోపురంపై గొప్ప దీపంతో జరిగే దీపోత్సవం.</span></p></div>
+      <div class="card"><span class="tag">Jan / Feb</span><h3>Thai Pusam <span class="t-te">తై పూసం</span></h3><p><span class="t-en">Devotees offer kavadi and milk abhishekam in fulfilment of vows.</span><span class="t-te">భక్తులు మొక్కుబడులు తీర్చుకోవడానికి కావడి, పాల అభిషేకం సమర్పిస్తారు.</span></p></div>
+      <div class="card"><span class="tag">Mar / Apr</span><h3>Panguni Uthiram <span class="t-te">పంగుని ఉత్తిరం</span></h3><p><span class="t-en">Celestial wedding celebration of the deity, marked with a temple car procession.</span><span class="t-te">స్వామివారి కళ్యాణోత్సవం, రథోత్సవంతో జరుపుకుంటారు.</span></p></div>
+      <div class="card"><span class="tag">May / Jun</span><h3>Vaikasi Visakam <span class="t-te">వైశాఖ విశాఖ</span></h3><p><span class="t-en">Birth star celebration of Lord Subrahmanya with special abhishekams.</span><span class="t-te">సుబ్రహ్మణ్య స్వామి జన్మ నక్షత్ర వేడుక, ప్రత్యేక అభిషేకాలతో.</span></p></div>
+      <div class="card"><span class="tag"><span class="t-en">Annual</span><span class="t-te">వార్షిక</span></span><h3>Brahmotsavam <span class="t-te">బ్రహ్మోత్సవం</span></h3><p><span class="t-en">The temple's grandest multi-day festival with processions and cultural programs.</span><span class="t-te">ఆలయ అతిపెద్ద బహుళ-దిన ఉత్సవం, ఊరేగింపులు మరియు సాంస్కృతిక కార్యక్రమాలతో.</span></p></div>
+    </div>
+    <p class="editnote"><span class="t-en">💡 Placeholder utsavam list — confirm exact dates and replace/add festivals specific to this temple.</span><span class="t-te">💡 నమూనా ఉత్సవాల జాబితా — ఖచ్చితమైన తేదీలను నిర్ధారించి, ఈ ఆలయానికి ప్రత్యేకమైన పండుగలను చేర్చండి.</span></p>
+  </div>
+</section>
+
+<!-- ===================== SEVA / POOJA BOOKING ===================== -->
+<section class="section" id="seva">
+  <div class="container">
+    <div class="section-head center">
+      <p class="eyebrow"><span class="t-en">Book a Seva</span><span class="t-te">సేవ బుక్ చేయండి</span></p>
+      <h2><span class="t-en">Poojas &amp; Homas</span><span class="t-te">పూజలు &amp; హోమాలు</span></h2>
+      <p><span class="t-en">Devotees may sponsor the following sevas and homas to be performed on their behalf, on a chosen date.</span><span class="t-te">భక్తులు తమ పేరిట క్రింది సేవలు మరియు హోమాలు నిర్వహించడానికి ఎంచుకున్న తేదీన స్పాన్సర్ చేయవచ్చు.</span></p>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <h3>Archana <span class="t-te">అర్చన</span></h3>
+        <p><span class="t-en">Daily name-chanting worship with flowers, offered in the devotee's name and gotra.</span><span class="t-te">భక్తుని పేరు, గోత్రంతో పుష్పాలతో నిత్య నామార్చన.</span></p>
+        <div class="price"><span class="t-en">₹ [Set Price] • Daily</span><span class="t-te">₹ [ధర నిర్ణయించండి] • ప్రతిరోజు</span></div>
+        <button class="btn btn-book-seva" data-seva="Archana"><span class="t-en">Book This Seva</span><span class="t-te">ఈ సేవను బుక్ చేయండి</span></button>
+      </div>
+      <div class="card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2l2 5 5 .5-4 3.5 1 5-4-2.5L8 16l1-5-4-3.5L10 7z"/></svg>
+        <h3>Abhishekam <span class="t-te">అభిషేకం</span></h3>
+        <p><span class="t-en">Sacred bathing ritual of the deity with milk, curd, honey, and sacred water.</span><span class="t-te">పాలు, పెరుగు, తేనె, పవిత్ర జలంతో స్వామివారికి అభిషేకం.</span></p>
+        <div class="price"><span class="t-en">₹ [Set Price] • By appointment</span><span class="t-te">₹ [ధర నిర్ణయించండి] • ముందస్తు అనుమతితో</span></div>
+        <button class="btn btn-book-seva" data-seva="Abhishekam"><span class="t-en">Book This Seva</span><span class="t-te">ఈ సేవను బుక్ చేయండి</span></button>
+      </div>
+      <div class="card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3c3 4 6 6 6 10a6 6 0 01-12 0c0-4 3-6 6-10z"/></svg>
+        <h3>Homam / Yagam <span class="t-te">హోమం / యాగం</span></h3>
+        <p><span class="t-en">Sacred fire ritual performed by temple priests for the devotee's wellbeing.</span><span class="t-te">భక్తుని శ్రేయస్సు కోసం అర్చకులు నిర్వహించే అగ్ని పూజ.</span></p>
+        <div class="price"><span class="t-en">₹ [Set Price] • Pre-booking required</span><span class="t-te">₹ [ధర నిర్ణయించండి] • ముందుగా బుక్ చేయాలి</span></div>
+        <button class="btn btn-book-seva" data-seva="Homam / Yagam"><span class="t-en">Book This Seva</span><span class="t-te">ఈ సేవను బుక్ చేయండి</span></button>
+      </div>
+      <div class="card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 2v4M16 2v4M4 10h16"/></svg>
+        <h3>Kalyanotsavam <span class="t-te">కళ్యాణోత్సవం</span></h3>
+        <p><span class="t-en">Celestial wedding ceremony sponsorship, performed on special occasions and utsavam days.</span><span class="t-te">ప్రత్యేక సందర్భాలు, ఉత్సవ దినాలలో నిర్వహించే కళ్యాణోత్సవ స్పాన్సర్‌షిప్.</span></p>
+        <div class="price"><span class="t-en">₹ [Set Price] • Seasonal</span><span class="t-te">₹ [ధర నిర్ణయించండి] • ఋతు ప్రకారం</span></div>
+        <button class="btn btn-book-seva" data-seva="Kalyanotsavam"><span class="t-en">Book This Seva</span><span class="t-te">ఈ సేవను బుక్ చేయండి</span></button>
+      </div>
+      <div class="card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s-7-4.5-9-9a5 5 0 019-3 5 5 0 019 3c-2 4.5-9 9-9 9z"/></svg>
+        <h3>Kavadi Seva <span class="t-te">కావడి సేవ</span></h3>
+        <p><span class="t-en">Traditional offering carried by devotees, especially during Thai Pusam.</span><span class="t-te">ముఖ్యంగా తై పూసం సమయంలో భక్తులు మోసే సాంప్రదాయ కావడి.</span></p>
+        <div class="price"><span class="t-en">₹ [Set Price] • Festival days</span><span class="t-te">₹ [ధర నిర్ణయించండి] • పండుగ దినాలలో</span></div>
+        <button class="btn btn-book-seva" data-seva="Kavadi Seva"><span class="t-en">Book This Seva</span><span class="t-te">ఈ సేవను బుక్ చేయండి</span></button>
+      </div>
+      <div class="card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 19h16M6 19V9l6-4 6 4v10"/></svg>
+        <h3>Annadanam Sponsorship <span class="t-te">అన్నదాన సేవ</span></h3>
+        <p><span class="t-en">Sponsor a day of free meal offering (prasadam) to devotees and pilgrims.</span><span class="t-te">భక్తులకు, యాత్రికులకు ఉచిత అన్నప్రసాద పంపిణీ కోసం ఒక రోజు స్పాన్సర్ చేయండి.</span></p>
+        <div class="price"><span class="t-en">₹ [Set Price] • Any day</span><span class="t-te">₹ [ధర నిర్ణయించండి] • ఏ రోజైనా</span></div>
+        <button class="btn btn-book-seva" data-seva="Annadanam Sponsorship"><span class="t-en">Book This Seva</span><span class="t-te">ఈ సేవను బుక్ చేయండి</span></button>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:40px;">
+      <a href="#contact" class="btn btn-maroon"><span class="t-en">Enquire / Book a Seva</span><span class="t-te">విచారించండి / సేవ బుక్ చేయండి</span></a>
+    </div>
+    <p class="editnote"><span class="t-en">💡 Replace [Set Price] with actual seva rates.</span><span class="t-te">💡 [ధర నిర్ణయించండి] స్థానంలో వాస్తవ సేవా రేట్లను చేర్చండి.</span></p>
+  </div>
+</section>
+
+<!-- ===================== GALLERY ===================== -->
+<section class="section section--tight" id="gallery" style="background:var(--ivory-deep);">
+  <div class="container">
+    <div class="section-head center">
+      <p class="eyebrow"><span class="t-en">Moments</span><span class="t-te">క్షణాలు</span></p>
+      <h2><span class="t-en">Gallery</span><span class="t-te">గ్యాలరీ</span></h2>
+      <p><span class="t-en">Photos and videos from utsavams and daily worship — past celebrations and upcoming events.</span><span class="t-te">ఉత్సవాలు, నిత్య పూజల ఫోటోలు మరియు వీడియోలు — గత వేడుకలు మరియు రాబోయే కార్యక్రమాలు.</span></p>
+    </div>
+    <div class="gallery-tabs">
+      <button class="gtab active" data-tab="photos"><span class="t-en">Photos</span><span class="t-te">ఫోటోలు</span></button>
+      <button class="gtab" data-tab="videos"><span class="t-en">Videos</span><span class="t-te">వీడియోలు</span></button>
+      <button class="gtab" data-tab="upcoming"><span class="t-en">Upcoming Events</span><span class="t-te">రాబోయే కార్యక్రమాలు</span></button>
+    </div>
+
+    <div class="gallery-panel active" id="panel-photos">
+      <div class="gallery-grid">
+        <div class="img-frame gallery-tile"><img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAwIDMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0ic2t5YmciIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj4KPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzBGNTI1NyIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzdBMUYyQiIvPgo8L2xpbmVhckdyYWRpZW50Pgo8bGluZWFyR3JhZGllbnQgaWQ9ImdvcHVyYW1Hb2xkIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+CjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNFNEM3NjUiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNDOUEyMjciLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0idXJsKCNza3liZykiLz4KPGNpcmNsZSBjeD0iMzMwIiBjeT0iNTUiIHI9IjI4IiBmaWxsPSIjRjdGMEUzIiBvcGFjaXR5PSIwLjg1Ii8+CjwhLS0gdGllcmVkIGdvcHVyYW0gLS0+CjxnIGZpbGw9InVybCgjZ29wdXJhbUdvbGQpIiBzdHJva2U9IiNGN0YwRTMiIHN0cm9rZS13aWR0aD0iMS41Ij4KPHJlY3QgeD0iMTUwIiB5PSIyMzAiIHdpZHRoPSIxMDAiIGhlaWdodD0iNjAiLz4KPHJlY3QgeD0iMTYwIiB5PSIyMDAiIHdpZHRoPSI4MCIgaGVpZ2h0PSIzMCIvPgo8cmVjdCB4PSIxNzAiIHk9IjE3MiIgd2lkdGg9IjYwIiBoZWlnaHQ9IjI4Ii8+CjxyZWN0IHg9IjE4MCIgeT0iMTQ2IiB3aWR0aD0iNDAiIGhlaWdodD0iMjYiLz4KPHJlY3QgeD0iMTg4IiB5PSIxMjAiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNiIvPgo8cGF0aCBkPSJNMTg4IDEyMCBMMjAwIDk2IEwyMTIgMTIwIFoiLz4KPGNpcmNsZSBjeD0iMjAwIiBjeT0iOTAiIHI9IjYiIGZpbGw9IiNGN0YwRTMiLz4KPC9nPgo8IS0tIHNpZGUgcGlsbGFycyAtLT4KPHJlY3QgeD0iMTIwIiB5PSIyMzAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI2MCIgZmlsbD0iIzdBMUYyQiIgc3Ryb2tlPSIjRTRDNzY1IiBzdHJva2Utd2lkdGg9IjEiLz4KPHJlY3QgeD0iMjYwIiB5PSIyMzAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI2MCIgZmlsbD0iIzdBMUYyQiIgc3Ryb2tlPSIjRTRDNzY1IiBzdHJva2Utd2lkdGg9IjEiLz4KPCEtLSBzdGVwcyAtLT4KPHJlY3QgeD0iMTAwIiB5PSIyOTAiIHdpZHRoPSIyMDAiIGhlaWdodD0iOCIgZmlsbD0iI0VGRTRDQyIvPgo8cmVjdCB4PSI5MCIgeT0iMjk4IiB3aWR0aD0iMjIwIiBoZWlnaHQ9IjIiIGZpbGw9IiNERUQwQUMiLz4KPCEtLSBkZWNvcmF0aXZlIGRvdHMgb24gdGllcnMgLS0+CjxnIGZpbGw9IiM3QTFGMkIiPgo8Y2lyY2xlIGN4PSIxNjUiIGN5PSIyMTUiIHI9IjIiLz48Y2lyY2xlIGN4PSIxODUiIGN5PSIyMTUiIHI9IjIiLz48Y2lyY2xlIGN4PSIyMDUiIGN5PSIyMTUiIHI9IjIiLz48Y2lyY2xlIGN4PSIyMjUiIGN5PSIyMTUiIHI9IjIiLz4KPGNpcmNsZSBjeD0iMTgwIiBjeT0iMTg2IiByPSIyIi8+PGNpcmNsZSBjeD0iMjAwIiBjeT0iMTg2IiByPSIyIi8+PGNpcmNsZSBjeD0iMjIwIiBjeT0iMTg2IiByPSIyIi8+CjwvZz4KPC9zdmc+Cg==" alt="Temple artwork 1" loading="lazy"><span class="img-caption"><span class="t-en">Photo 1 — replace (1200×900px)</span><span class="t-te">ఫోటో 1 — మార్చండి (1200×900px)</span></span></div>
+        <div class="img-frame gallery-tile"><img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAwIDMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGRlZnM+CjxyYWRpYWxHcmFkaWVudCBpZD0iZXllR3JhZCIgY3g9IjUwJSIgY3k9IjQwJSIgcj0iNjAlIj4KPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0U0Qzc2NSIvPjxzdG9wIG9mZnNldD0iNTUlIiBzdG9wLWNvbG9yPSIjMEY1MjU3Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjN0ExRjJCIi8+CjwvcmFkaWFsR3JhZGllbnQ+CjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNGN0YwRTMiLz4KPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjAwLDE1MCkiPgo8cGF0aCBkPSJNMCA5MCBRIC02IDIwIDAgLTkwIFEgNiAyMCAwIDkwIFoiIGZpbGw9IiMwRjUyNTciIG9wYWNpdHk9IjAuMTUiLz4KPGVsbGlwc2UgY3g9IjAiIGN5PSItOTAiIHJ4PSI1NSIgcnk9IjcwIiBmaWxsPSJ1cmwoI2V5ZUdyYWQpIi8+CjxlbGxpcHNlIGN4PSIwIiBjeT0iLTkwIiByeD0iMzAiIHJ5PSI0MiIgZmlsbD0iI0Y3RjBFMyIgb3BhY2l0eT0iMC45Ii8+CjxlbGxpcHNlIGN4PSIwIiBjeT0iLTkwIiByeD0iMTQiIHJ5PSIyMCIgZmlsbD0iIzBBM0IzRiIvPgo8bGluZSB4MT0iMCIgeTE9Ii0yMCIgeDI9IjAiIHkyPSI5NSIgc3Ryb2tlPSIjQzlBMjI3IiBzdHJva2Utd2lkdGg9IjIiLz4KPGcgc3Ryb2tlPSIjMEY1MjU3IiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNSI+CjxwYXRoIGQ9Ik0wIC0xNDAgUSAtMjAgLTEwMCAwIC0yMCIvPjxwYXRoIGQ9Ik0wIC0xNDAgUSAyMCAtMTAwIDAgLTIwIi8+CjxwYXRoIGQ9Ik0wIC0xMzAgUSAtMzUgLTgwIDAgMCIvPjxwYXRoIGQ9Ik0wIC0xMzAgUSAzNSAtODAgMCAwIi8+CjwvZz4KPC9nPgo8L3N2Zz4K" alt="Temple artwork 2" loading="lazy"><span class="img-caption"><span class="t-en">Photo 2 — replace (1200×900px)</span><span class="t-te">ఫోటో 2 — మార్చండి (1200×900px)</span></span></div>
+        <div class="img-frame gallery-tile"><img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAwIDMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNFRkU0Q0MiLz4KPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjAwLDE3MCkiPgo8ZyBmaWxsPSIjN0ExRjJCIiBvcGFjaXR5PSIwLjkiPgo8ZWxsaXBzZSBjeD0iMCIgY3k9Ii0xMCIgcng9IjE4IiByeT0iNTUiIHRyYW5zZm9ybT0icm90YXRlKDApIi8+CjxlbGxpcHNlIGN4PSIwIiBjeT0iLTEwIiByeD0iMTgiIHJ5PSI1NSIgdHJhbnNmb3JtPSJyb3RhdGUoNDUpIi8+CjxlbGxpcHNlIGN4PSIwIiBjeT0iLTEwIiByeD0iMTgiIHJ5PSI1NSIgdHJhbnNmb3JtPSJyb3RhdGUoOTApIi8+CjxlbGxpcHNlIGN4PSIwIiBjeT0iLTEwIiByeD0iMTgiIHJ5PSI1NSIgdHJhbnNmb3JtPSJyb3RhdGUoMTM1KSIvPgo8ZWxsaXBzZSBjeD0iMCIgY3k9Ii0xMCIgcng9IjE4IiByeT0iNTUiIHRyYW5zZm9ybT0icm90YXRlKDE4MCkiLz4KPGVsbGlwc2UgY3g9IjAiIGN5PSItMTAiIHJ4PSIxOCIgcnk9IjU1IiB0cmFuc2Zvcm09InJvdGF0ZSgyMjUpIi8+CjxlbGxpcHNlIGN4PSIwIiBjeT0iLTEwIiByeD0iMTgiIHJ5PSI1NSIgdHJhbnNmb3JtPSJyb3RhdGUoMjcwKSIvPgo8ZWxsaXBzZSBjeD0iMCIgY3k9Ii0xMCIgcng9IjE4IiByeT0iNTUiIHRyYW5zZm9ybT0icm90YXRlKDMxNSkiLz4KPC9nPgo8ZyBmaWxsPSIjQzlBMjI3Ij4KPGVsbGlwc2UgY3g9IjAiIGN5PSItOCIgcng9IjEyIiByeT0iMzgiIHRyYW5zZm9ybT0icm90YXRlKDIyKSIvPgo8ZWxsaXBzZSBjeD0iMCIgY3k9Ii04IiByeD0iMTIiIHJ5PSIzOCIgdHJhbnNmb3JtPSJyb3RhdGUoNjcpIi8+CjxlbGxpcHNlIGN4PSIwIiBjeT0iLTgiIHJ4PSIxMiIgcnk9IjM4IiB0cmFuc2Zvcm09InJvdGF0ZSgxMTIpIi8+CjxlbGxpcHNlIGN4PSIwIiBjeT0iLTgiIHJ4PSIxMiIgcnk9IjM4IiB0cmFuc2Zvcm09InJvdGF0ZSgxNTcpIi8+CjxlbGxpcHNlIGN4PSIwIiBjeT0iLTgiIHJ4PSIxMiIgcnk9IjM4IiB0cmFuc2Zvcm09InJvdGF0ZSgyMDIpIi8+CjxlbGxpcHNlIGN4PSIwIiBjeT0iLTgiIHJ4PSIxMiIgcnk9IjM4IiB0cmFuc2Zvcm09InJvdGF0ZSgyNDcpIi8+CjxlbGxpcHNlIGN4PSIwIiBjeT0iLTgiIHJ4PSIxMiIgcnk9IjM4IiB0cmFuc2Zvcm09InJvdGF0ZSgyOTIpIi8+CjxlbGxpcHNlIGN4PSIwIiBjeT0iLTgiIHJ4PSIxMiIgcnk9IjM4IiB0cmFuc2Zvcm09InJvdGF0ZSgzMzcpIi8+CjwvZz4KPGNpcmNsZSBjeD0iMCIgY3k9IjAiIHI9IjE2IiBmaWxsPSIjRTRDNzY1Ii8+CjxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSI4IiBmaWxsPSIjN0ExRjJCIi8+CjwvZz4KPC9zdmc+Cg==" alt="Temple artwork 3" loading="lazy"><span class="img-caption"><span class="t-en">Photo 3 — replace (1200×900px)</span><span class="t-te">ఫోటో 3 — మార్చండి (1200×900px)</span></span></div>
+        <div class="img-frame gallery-tile"><img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAwIDMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0icG90R3JhZCIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgo8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjRTRDNzY1Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjN0ExRjJCIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNGN0YwRTMiLz4KPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjAwLDE2MCkiPgo8cGF0aCBkPSJNLTggLTkwIEwgOCAtOTAgTCA4IC03MCBMIC04IC03MCBaIiBmaWxsPSIjMEY1MjU3Ii8+CjxlbGxpcHNlIGN4PSIwIiBjeT0iLTcwIiByeD0iMTQiIHJ5PSI2IiBmaWxsPSIjQzlBMjI3Ii8+CjxwYXRoIGQ9Ik0tNDUgLTEwIFEgLTQ1IC02MCAwIC02NiBRIDQ1IC02MCA0NSAtMTAgUSA0NSA0MCAwIDU1IFEgLTQ1IDQwIC00NSAtMTAgWiIgZmlsbD0idXJsKCNwb3RHcmFkKSIgc3Ryb2tlPSIjN0ExRjJCIiBzdHJva2Utd2lkdGg9IjIiLz4KPGVsbGlwc2UgY3g9IjAiIGN5PSItNDAiIHJ4PSI0NiIgcnk9IjEwIiBmaWxsPSIjMEY1MjU3IiBvcGFjaXR5PSIwLjUiLz4KPGVsbGlwc2UgY3g9IjAiIGN5PSIwIiByeD0iNDYiIHJ5PSIxMCIgZmlsbD0iIzBGNTI1NyIgb3BhY2l0eT0iMC4zIi8+CjxnIGZpbGw9IiMwQTNCM0YiIG9wYWNpdHk9IjAuNSI+CjxwYXRoIGQ9Ik0tMzAgLTcwIFEgMCAtNTAgMzAgLTcwIiBzdHJva2U9IiMwQTNCM0YiIHN0cm9rZS13aWR0aD0iMS41IiBmaWxsPSJub25lIi8+CjwvZz4KPCEtLSBtYW5nbyBsZWF2ZXMgLS0+CjxwYXRoIGQ9Ik0tMTUgLTkwIFEgLTMwIC0xMDAgLTIwIC0xMTUgUSAtNSAtMTA1IC0xNSAtOTAgWiIgZmlsbD0iIzBGNTI1NyIvPgo8cGF0aCBkPSJNMCAtOTAgUSAtNSAtMTA1IDUgLTExOCBRIDE1IC0xMDUgMCAtOTAgWiIgZmlsbD0iIzBGNTI1NyIvPgo8cGF0aCBkPSJNMTUgLTkwIFEgMzAgLTEwMCAyMCAtMTE1IFEgNSAtMTA1IDE1IC05MCBaIiBmaWxsPSIjMEY1MjU3Ii8+CjwvZz4KPC9zdmc+Cg==" alt="Temple artwork 4" loading="lazy"><span class="img-caption"><span class="t-en">Photo 4 — replace (1200×900px)</span><span class="t-te">ఫోటో 4 — మార్చండి (1200×900px)</span></span></div>
+        <div class="img-frame gallery-tile"><img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAwIDMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iYmVsbEdyYWQiIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj4KPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0U0Qzc2NSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI0M5QTIyNyIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjMEEzQjNGIi8+CjxlbGxpcHNlIGN4PSIyMDAiIGN5PSIxNTAiIHJ4PSIxNTAiIHJ5PSIxMzAiIGZpbGw9IiMwRjUyNTciIG9wYWNpdHk9IjAuMzUiLz4KPGxpbmUgeDE9IjIwMCIgeTE9IjQwIiB4Mj0iMjAwIiB5Mj0iNzAiIHN0cm9rZT0iI0U0Qzc2NSIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxjaXJjbGUgY3g9IjIwMCIgY3k9IjM1IiByPSI4IiBmaWxsPSJub25lIiBzdHJva2U9IiNFNEM3NjUiIHN0cm9rZS13aWR0aD0iMyIvPgo8cGF0aCBkPSJNMTY1IDcwIFEgMTYwIDEzMCAxNTAgMTgwIFEgMTUwIDIwMCAyMDAgMjAwIFEgMjUwIDIwMCAyNTAgMTgwIFEgMjQwIDEzMCAyMzUgNzAgWiIgZmlsbD0idXJsKCNiZWxsR3JhZCkiIHN0cm9rZT0iIzdBMUYyQiIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxlbGxpcHNlIGN4PSIyMDAiIGN5PSI3MCIgcng9IjM1IiByeT0iOCIgZmlsbD0iIzdBMUYyQiIvPgo8bGluZSB4MT0iMjAwIiB5MT0iMjAwIiB4Mj0iMjAwIiB5Mj0iMjMwIiBzdHJva2U9IiNDOUEyMjciIHN0cm9rZS13aWR0aD0iMyIvPgo8ZWxsaXBzZSBjeD0iMjAwIiBjeT0iMjM1IiByeD0iMTAiIHJ5PSIxMCIgZmlsbD0iIzdBMUYyQiIvPgo8ZyBzdHJva2U9IiM3QTFGMkIiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC42Ij4KPGxpbmUgeDE9IjE2MCIgeTE9IjEyMCIgeDI9IjI0MCIgeTI9IjEyMCIvPgo8bGluZSB4MT0iMTUzIiB5MT0iMTU1IiB4Mj0iMjQ3IiB5Mj0iMTU1Ii8+CjwvZz4KPC9zdmc+Cg==" alt="Temple artwork 5" loading="lazy"><span class="img-caption"><span class="t-en">Photo 5 — replace (1200×900px)</span><span class="t-te">ఫోటో 5 — మార్చండి (1200×900px)</span></span></div>
+        <div class="img-frame gallery-tile"><img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAwIDMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGRlZnM+CjxyYWRpYWxHcmFkaWVudCBpZD0iZmxhbWVHcmFkIiBjeD0iNTAlIiBjeT0iMzAlIiByPSI3MCUiPgo8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjRkZGM0M0Ii8+PHN0b3Agb2Zmc2V0PSI1MCUiIHN0b3AtY29sb3I9IiNFNEM3NjUiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNDOUEyMjciLz4KPC9yYWRpYWxHcmFkaWVudD4KPGxpbmVhckdyYWRpZW50IGlkPSJsYW1wQm9keSIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgo8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjQzlBMjI3Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjN0ExRjJCIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiMwQTNCM0YiLz4KPGVsbGlwc2UgY3g9IjIwMCIgY3k9IjE1MCIgcng9IjE0MCIgcnk9IjE0MCIgZmlsbD0iIzBGNTI1NyIgb3BhY2l0eT0iMC40Ii8+CjxwYXRoIGQ9Ik0xOTUgMTMwIFEgMTg1IDEwMCAyMDAgNzAgUSAyMTUgMTAwIDIwNSAxMzAgUSAyMDAgMTE1IDE5NSAxMzAgWiIgZmlsbD0idXJsKCNmbGFtZUdyYWQpIi8+CjxlbGxpcHNlIGN4PSIyMDAiIGN5PSIyMDAiIHJ4PSI3MCIgcnk9IjE4IiBmaWxsPSJ1cmwoI2xhbXBCb2R5KSIvPgo8cGF0aCBkPSJNMTMwIDIwMCBRIDEzMCAxNzUgMTY1IDE2OCBMIDIzNSAxNjggUSAyNzAgMTc1IDI3MCAyMDAgWiIgZmlsbD0idXJsKCNsYW1wQm9keSkiLz4KPGVsbGlwc2UgY3g9IjIwMCIgY3k9IjE2OCIgcng9IjM1IiByeT0iOSIgZmlsbD0iI0U0Qzc2NSIvPgo8Y2lyY2xlIGN4PSIxMjAiIGN5PSIxOTUiIHI9IjQiIGZpbGw9IiNFNEM3NjUiLz48Y2lyY2xlIGN4PSIyODAiIGN5PSIxOTUiIHI9IjQiIGZpbGw9IiNFNEM3NjUiLz4KPGcgZmlsbD0iI0U0Qzc2NSIgb3BhY2l0eT0iMC43Ij4KPGNpcmNsZSBjeD0iOTAiIGN5PSIxMDAiIHI9IjIiLz48Y2lyY2xlIGN4PSIzMjAiIGN5PSI4MCIgcj0iMiIvPjxjaXJjbGUgY3g9IjYwIiBjeT0iMTgwIiByPSIxLjUiLz48Y2lyY2xlIGN4PSIzNDAiIGN5PSIxNTAiIHI9IjIiLz4KPC9nPgo8L3N2Zz4K" alt="Temple artwork 6" loading="lazy"><span class="img-caption"><span class="t-en">Photo 6 — replace (1200×900px)</span><span class="t-te">ఫోటో 6 — మార్చండి (1200×900px)</span></span></div>
+        <div class="img-frame gallery-tile"><img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAwIDMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0ic2t5YmciIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj4KPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzBGNTI1NyIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzdBMUYyQiIvPgo8L2xpbmVhckdyYWRpZW50Pgo8bGluZWFyR3JhZGllbnQgaWQ9ImdvcHVyYW1Hb2xkIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+CjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNFNEM3NjUiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNDOUEyMjciLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0idXJsKCNza3liZykiLz4KPGNpcmNsZSBjeD0iMzMwIiBjeT0iNTUiIHI9IjI4IiBmaWxsPSIjRjdGMEUzIiBvcGFjaXR5PSIwLjg1Ii8+CjwhLS0gdGllcmVkIGdvcHVyYW0gLS0+CjxnIGZpbGw9InVybCgjZ29wdXJhbUdvbGQpIiBzdHJva2U9IiNGN0YwRTMiIHN0cm9rZS13aWR0aD0iMS41Ij4KPHJlY3QgeD0iMTUwIiB5PSIyMzAiIHdpZHRoPSIxMDAiIGhlaWdodD0iNjAiLz4KPHJlY3QgeD0iMTYwIiB5PSIyMDAiIHdpZHRoPSI4MCIgaGVpZ2h0PSIzMCIvPgo8cmVjdCB4PSIxNzAiIHk9IjE3MiIgd2lkdGg9IjYwIiBoZWlnaHQ9IjI4Ii8+CjxyZWN0IHg9IjE4MCIgeT0iMTQ2IiB3aWR0aD0iNDAiIGhlaWdodD0iMjYiLz4KPHJlY3QgeD0iMTg4IiB5PSIxMjAiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNiIvPgo8cGF0aCBkPSJNMTg4IDEyMCBMMjAwIDk2IEwyMTIgMTIwIFoiLz4KPGNpcmNsZSBjeD0iMjAwIiBjeT0iOTAiIHI9IjYiIGZpbGw9IiNGN0YwRTMiLz4KPC9nPgo8IS0tIHNpZGUgcGlsbGFycyAtLT4KPHJlY3QgeD0iMTIwIiB5PSIyMzAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI2MCIgZmlsbD0iIzdBMUYyQiIgc3Ryb2tlPSIjRTRDNzY1IiBzdHJva2Utd2lkdGg9IjEiLz4KPHJlY3QgeD0iMjYwIiB5PSIyMzAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI2MCIgZmlsbD0iIzdBMUYyQiIgc3Ryb2tlPSIjRTRDNzY1IiBzdHJva2Utd2lkdGg9IjEiLz4KPCEtLSBzdGVwcyAtLT4KPHJlY3QgeD0iMTAwIiB5PSIyOTAiIHdpZHRoPSIyMDAiIGhlaWdodD0iOCIgZmlsbD0iI0VGRTRDQyIvPgo8cmVjdCB4PSI5MCIgeT0iMjk4IiB3aWR0aD0iMjIwIiBoZWlnaHQ9IjIiIGZpbGw9IiNERUQwQUMiLz4KPCEtLSBkZWNvcmF0aXZlIGRvdHMgb24gdGllcnMgLS0+CjxnIGZpbGw9IiM3QTFGMkIiPgo8Y2lyY2xlIGN4PSIxNjUiIGN5PSIyMTUiIHI9IjIiLz48Y2lyY2xlIGN4PSIxODUiIGN5PSIyMTUiIHI9IjIiLz48Y2lyY2xlIGN4PSIyMDUiIGN5PSIyMTUiIHI9IjIiLz48Y2lyY2xlIGN4PSIyMjUiIGN5PSIyMTUiIHI9IjIiLz4KPGNpcmNsZSBjeD0iMTgwIiBjeT0iMTg2IiByPSIyIi8+PGNpcmNsZSBjeD0iMjAwIiBjeT0iMTg2IiByPSIyIi8+PGNpcmNsZSBjeD0iMjIwIiBjeT0iMTg2IiByPSIyIi8+CjwvZz4KPC9zdmc+Cg==" alt="Temple artwork 7" loading="lazy"><span class="img-caption"><span class="t-en">Photo 7 — replace (1200×900px)</span><span class="t-te">ఫోటో 7 — మార్చండి (1200×900px)</span></span></div>
+        <div class="img-frame gallery-tile"><img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAwIDMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNFRkU0Q0MiLz4KPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjAwLDE3MCkiPgo8ZyBmaWxsPSIjN0ExRjJCIiBvcGFjaXR5PSIwLjkiPgo8ZWxsaXBzZSBjeD0iMCIgY3k9Ii0xMCIgcng9IjE4IiByeT0iNTUiIHRyYW5zZm9ybT0icm90YXRlKDApIi8+CjxlbGxpcHNlIGN4PSIwIiBjeT0iLTEwIiByeD0iMTgiIHJ5PSI1NSIgdHJhbnNmb3JtPSJyb3RhdGUoNDUpIi8+CjxlbGxpcHNlIGN4PSIwIiBjeT0iLTEwIiByeD0iMTgiIHJ5PSI1NSIgdHJhbnNmb3JtPSJyb3RhdGUoOTApIi8+CjxlbGxpcHNlIGN4PSIwIiBjeT0iLTEwIiByeD0iMTgiIHJ5PSI1NSIgdHJhbnNmb3JtPSJyb3RhdGUoMTM1KSIvPgo8ZWxsaXBzZSBjeD0iMCIgY3k9Ii0xMCIgcng9IjE4IiByeT0iNTUiIHRyYW5zZm9ybT0icm90YXRlKDE4MCkiLz4KPGVsbGlwc2UgY3g9IjAiIGN5PSItMTAiIHJ4PSIxOCIgcnk9IjU1IiB0cmFuc2Zvcm09InJvdGF0ZSgyMjUpIi8+CjxlbGxpcHNlIGN4PSIwIiBjeT0iLTEwIiByeD0iMTgiIHJ5PSI1NSIgdHJhbnNmb3JtPSJyb3RhdGUoMjcwKSIvPgo8ZWxsaXBzZSBjeD0iMCIgY3k9Ii0xMCIgcng9IjE4IiByeT0iNTUiIHRyYW5zZm9ybT0icm90YXRlKDMxNSkiLz4KPC9nPgo8ZyBmaWxsPSIjQzlBMjI3Ij4KPGVsbGlwc2UgY3g9IjAiIGN5PSItOCIgcng9IjEyIiByeT0iMzgiIHRyYW5zZm9ybT0icm90YXRlKDIyKSIvPgo8ZWxsaXBzZSBjeD0iMCIgY3k9Ii04IiByeD0iMTIiIHJ5PSIzOCIgdHJhbnNmb3JtPSJyb3RhdGUoNjcpIi8+CjxlbGxpcHNlIGN4PSIwIiBjeT0iLTgiIHJ4PSIxMiIgcnk9IjM4IiB0cmFuc2Zvcm09InJvdGF0ZSgxMTIpIi8+CjxlbGxpcHNlIGN4PSIwIiBjeT0iLTgiIHJ4PSIxMiIgcnk9IjM4IiB0cmFuc2Zvcm09InJvdGF0ZSgxNTcpIi8+CjxlbGxpcHNlIGN4PSIwIiBjeT0iLTgiIHJ4PSIxMiIgcnk9IjM4IiB0cmFuc2Zvcm09InJvdGF0ZSgyMDIpIi8+CjxlbGxpcHNlIGN4PSIwIiBjeT0iLTgiIHJ4PSIxMiIgcnk9IjM4IiB0cmFuc2Zvcm09InJvdGF0ZSgyNDcpIi8+CjxlbGxpcHNlIGN4PSIwIiBjeT0iLTgiIHJ4PSIxMiIgcnk9IjM4IiB0cmFuc2Zvcm09InJvdGF0ZSgyOTIpIi8+CjxlbGxpcHNlIGN4PSIwIiBjeT0iLTgiIHJ4PSIxMiIgcnk9IjM4IiB0cmFuc2Zvcm09InJvdGF0ZSgzMzcpIi8+CjwvZz4KPGNpcmNsZSBjeD0iMCIgY3k9IjAiIHI9IjE2IiBmaWxsPSIjRTRDNzY1Ii8+CjxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSI4IiBmaWxsPSIjN0ExRjJCIi8+CjwvZz4KPC9zdmc+Cg==" alt="Temple artwork 8" loading="lazy"><span class="img-caption"><span class="t-en">Photo 8 — replace (1200×900px)</span><span class="t-te">ఫోటో 8 — మార్చండి (1200×900px)</span></span></div>
+      </div>
+    </div>
+
+    <div class="gallery-panel" id="panel-videos">
+      <div class="gallery-grid">
+        <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M10 9l5 3-5 3V9z" fill="currentColor" stroke="none"/></svg><span class="ph-title">Video 1</span><span class="ph-dim">1920×1080px, MP4</span></div>
+        <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M10 9l5 3-5 3V9z" fill="currentColor" stroke="none"/></svg><span class="ph-title">Video 2</span><span class="ph-dim">1920×1080px, MP4</span></div>
+        <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M10 9l5 3-5 3V9z" fill="currentColor" stroke="none"/></svg><span class="ph-title">Video 3</span><span class="ph-dim">1920×1080px, MP4</span></div>
+      </div>
+    </div>
+
+    <div class="gallery-panel" id="panel-upcoming">
+      <div class="card-grid">
+        <div class="card"><span class="tag"><span class="t-en">Upcoming</span><span class="t-te">రాబోయేది</span></span><h3>[<span class="t-en">Event Name</span><span class="t-te">కార్యక్రమం పేరు</span>]</h3><p>[<span class="t-en">Date</span><span class="t-te">తేదీ</span>] — <span class="t-en">Short description of the upcoming utsavam or event.</span><span class="t-te">రాబోయే ఉత్సవం లేదా కార్యక్రమం గురించి క్లుప్త వివరణ.</span></p></div>
+        <div class="card"><span class="tag"><span class="t-en">Upcoming</span><span class="t-te">రాబోయేది</span></span><h3>[<span class="t-en">Event Name</span><span class="t-te">కార్యక్రమం పేరు</span>]</h3><p>[<span class="t-en">Date</span><span class="t-te">తేదీ</span>] — <span class="t-en">Short description of the upcoming utsavam or event.</span><span class="t-te">రాబోయే ఉత్సవం లేదా కార్యక్రమం గురించి క్లుప్త వివరణ.</span></p></div>
+      </div>
+    </div>
+    <p class="editnote"><span class="t-en">💡 Photo/video tiles are placeholders — see README.md for exact folder paths.</span><span class="t-te">💡 ఫోటో/వీడియో టైల్స్ నమూనావి — వివరాల కోసం README.md చూడండి.</span></p>
+  </div>
+</section>
+
+<!-- ===================== DONATE ===================== -->
+<section class="section" id="donate">
+  <div class="container">
+    <div class="section-head center">
+      <p class="eyebrow"><span class="t-en">Support the Temple</span><span class="t-te">ఆలయానికి సహాయం చేయండి</span></p>
+      <h2><span class="t-en">Donations</span><span class="t-te">విరాళాలు</span></h2>
+      <p><span class="t-en">Your contribution helps sustain daily worship, utsavams, temple maintenance, and community annadanam.</span><span class="t-te">మీ విరాళం నిత్య పూజలు, ఉత్సవాలు, ఆలయ నిర్వహణ మరియు అన్నదాన సేవలకు తోడ్పడుతుంది.</span></p>
+    </div>
+    <div class="donate-grid">
+      <div class="qr-box">
+        <div class="ph">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM19 14h2v2h-2zM14 19h2v2h-2zM19 19h2v2h-2z"/></svg>
+          <span class="ph-title"><span class="t-en">Payment QR Code</span><span class="t-te">చెల్లింపు QR కోడ్</span></span>
+          <span class="ph-dim"><span class="t-en">Upload as 500×500px PNG</span><span class="t-te">500×500px PNG అప్‌లోడ్ చేయండి</span></span>
+        </div>
+        <p style="font-family:var(--ui); font-size:.85rem; margin-top:14px;"><span class="t-en">Scan with any UPI app (GPay, PhonePe, Paytm)</span><span class="t-te">ఏదైనా UPI యాప్‌తో స్కాన్ చేయండి (GPay, PhonePe, Paytm)</span></p>
+      </div>
+      <div>
+        <h3><span class="t-en">Bank Transfer Details</span><span class="t-te">బ్యాంక్ బదిలీ వివరాలు</span></h3>
+        <table class="bank-table">
+          <tr><td><span class="t-en">Account Name</span><span class="t-te">ఖాతా పేరు</span></td><td>Sri Sri Sri Valli Devasena Sametha Subrahmanyeswara Swamy Temple [EDIT]</td></tr>
+          <tr><td><span class="t-en">Account Number</span><span class="t-te">ఖాతా నంబర్</span></td><td>[<span class="t-en">Your Account Number</span><span class="t-te">మీ ఖాతా నంబర్</span>]</td></tr>
+          <tr><td>IFSC Code</td><td>[IFSC Code]</td></tr>
+          <tr><td><span class="t-en">Bank &amp; Branch</span><span class="t-te">బ్యాంక్ &amp; శాఖ</span></td><td>[<span class="t-en">Bank Name, Branch</span><span class="t-te">బ్యాంక్ పేరు, శాఖ</span>]</td></tr>
+          <tr><td>UPI ID</td><td>[yourtemple@upi]</td></tr>
+        </table>
+
+        <h3 style="margin-top:32px;"><span class="t-en">After You Donate</span><span class="t-te">విరాళం ఇచ్చిన తర్వాత</span></h3>
+        <ol class="donate-steps">
+          <li><span class="t-en">Complete your transfer via QR scan or the account details above.</span><span class="t-te">పై QR స్కాన్ లేదా ఖాతా వివరాల ద్వారా బదిలీ పూర్తి చేయండి.</span></li>
+          <li><span class="t-en">Send a screenshot of the payment along with your name and phone number via the contact link below.</span><span class="t-te">చెల్లింపు స్క్రీన్‌షాట్‌ను మీ పేరు, ఫోన్ నంబర్‌తో పాటు కింద ఉన్న లింక్ ద్వారా పంపండి.</span></li>
+          <li><span class="t-en">A receipt will be sent to you within 24 hours.</span><span class="t-te">24 గంటలలో మీకు రసీదు పంపబడుతుంది.</span></li>
+        </ol>
+        <button type="button" class="btn btn-gold" id="openDonationForm"><span class="t-en">Confirm My Donation</span><span class="t-te">నా విరాళాన్ని నిర్ధారించండి</span></button>
+        <p class="editnote"><span class="t-en">⚠️ True instant, automatic invoicing needs a payment gateway connected to a backend — see README.md.</span><span class="t-te">⚠️ నిజమైన తక్షణ, స్వయంచాలక రసీదు కోసం పేమెంట్ గేట్‌వే అవసరం — README.md చూడండి.</span></p>
+
+        <form id="donationForm" class="donation-form" style="display:none;">
+          <label><span class="t-en">Your Name</span><span class="t-te">మీ పేరు</span>
+            <input type="text" id="donorName" required>
+          </label>
+          <label><span class="t-en">Mobile Number</span><span class="t-te">మొబైల్ నంబర్</span>
+            <input type="tel" id="donorMobile" required pattern="[0-9]{10}">
+          </label>
+          <label><span class="t-en">Amount Donated (₹)</span><span class="t-te">విరాళం మొత్తం (₹)</span>
+            <input type="number" id="donorAmount" required min="1">
+          </label>
+          <label><span class="t-en">Purpose (optional)</span><span class="t-te">ప్రయోజనం (ఐచ్ఛికం)</span>
+            <input type="text" id="donorPurpose" placeholder="e.g. Annadanam, General">
+          </label>
+          <button type="submit" class="btn btn-maroon" style="width:100%; justify-content:center;">
+            <span class="t-en">Submit Confirmation</span><span class="t-te">నిర్ధారణ సమర్పించండి</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STORE ===================== -->
+<section class="section section--tight" id="store" style="background:var(--ivory-deep);">
+  <div class="container">
+    <div class="section-head center">
+      <p class="eyebrow"><span class="t-en">Temple Store</span><span class="t-te">ఆలయ దుకాణం</span></p>
+      <h2><span class="t-en">Pooja &amp; Ritual Items</span><span class="t-te">పూజా సామాగ్రి</span></h2>
+      <p><span class="t-en">Essential items for worship, available at the temple store or on request.</span><span class="t-te">పూజకు అవసరమైన వస్తువులు ఆలయ దుకాణంలో లేదా అభ్యర్థనపై లభిస్తాయి.</span></p>
+    </div>
+    <div class="card-grid">
+      <div class="card store-card"><h3><span class="t-en">Camphor &amp; Agarbathi Set</span><span class="t-te">కర్పూరం &amp; అగరుబత్తి సెట్</span></h3><p><span class="t-en">Pack of pure camphor and incense sticks for daily worship.</span><span class="t-te">నిత్య పూజకు స్వచ్ఛమైన కర్పూరం, అగరుబత్తుల ప్యాక్.</span></p><div class="price">₹ [Price]</div></div>
+      <div class="card store-card"><h3><span class="t-en">Panchamrutham Kit</span><span class="t-te">పంచామృత కిట్</span></h3><p><span class="t-en">Milk, curd, honey, ghee &amp; sugar set for abhishekam.</span><span class="t-te">అభిషేకం కోసం పాలు, పెరుగు, తేనె, నెయ్యి, పంచదార సెట్.</span></p><div class="price">₹ [Price]</div></div>
+      <div class="card store-card"><h3><span class="t-en">Flower Garlands</span><span class="t-te">పూల మాలలు</span></h3><p><span class="t-en">Fresh garlands prepared daily for archana and abhishekam.</span><span class="t-te">అర్చన, అభిషేకం కోసం ప్రతిరోజు తాజా పూల మాలలు.</span></p><div class="price">₹ [Price]</div></div>
+      <div class="card store-card"><h3><span class="t-en">Homam Samagri Kit</span><span class="t-te">హోమ సామాగ్రి కిట్</span></h3><p><span class="t-en">Complete set of items required for homam/yagam sponsorship.</span><span class="t-te">హోమం/యాగం స్పాన్సర్‌షిప్‌కు అవసరమైన పూర్తి సామాగ్రి.</span></p><div class="price">₹ [Price]</div></div>
+      <div class="card store-card"><h3><span class="t-en">Prasadam Box</span><span class="t-te">ప్రసాదం బాక్స్</span></h3><p><span class="t-en">Packed prasadam to take home after darshan.</span><span class="t-te">దర్శనం తర్వాత ఇంటికి తీసుకెళ్లేందుకు ప్యాక్ చేసిన ప్రసాదం.</span></p><div class="price">₹ [Price]</div></div>
+      <div class="card store-card"><h3><span class="t-en">Temple Photo / Idol</span><span class="t-te">ఆలయ ఫోటో / విగ్రహం</span></h3><p><span class="t-en">Small idol or framed photo of the deity for home worship.</span><span class="t-te">ఇంటి పూజకు చిన్న విగ్రహం లేదా ఫ్రేమ్ చేసిన స్వామివారి ఫోటో.</span></p><div class="price">₹ [Price]</div></div>
+    </div>
+    <p class="editnote"><span class="t-en">💡 Replace item names, descriptions and prices with your actual store inventory.</span><span class="t-te">💡 వస్తువుల పేర్లు, వివరణలు, ధరలను మీ వాస్తవ దుకాణ జాబితాతో మార్చండి.</span></p>
+  </div>
+</section>
+
+<!-- ===================== CONTACT / FOOTER ===================== -->
+<footer id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>Sri Sri Sri Valli Devasena Sametha Subrahmanyeswara Swamy Temple, Vilasavilli</h4>
+        <p style="max-width:280px;">[<span class="t-en">Full temple address here</span><span class="t-te">ఆలయ పూర్తి చిరునామా ఇక్కడ</span>]</p>
+        <p><span class="t-en">Open daily: 5:30 AM – 9:00 PM</span><span class="t-te">ప్రతిరోజు తెరిచి ఉంటుంది: ఉదయం 5:30 – రాత్రి 9:00</span></p>
+      </div>
+      <div>
+        <h4><span class="t-en">Quick Links</span><span class="t-te">త్వరిత లింకులు</span></h4>
+        <ul>
+          <li><a href="#history"><span class="t-en">History</span><span class="t-te">చరిత్ర</span></a></li>
+          <li><a href="#rituals"><span class="t-en">Rituals</span><span class="t-te">పూజలు</span></a></li>
+          <li><a href="#seva"><span class="t-en">Book a Seva</span><span class="t-te">సేవ బుక్ చేయండి</span></a></li>
+          <li><a href="#gallery"><span class="t-en">Gallery</span><span class="t-te">గ్యాలరీ</span></a></li>
+        </ul>
+      </div>
+      <div>
+        <h4><span class="t-en">Support</span><span class="t-te">మద్దతు</span></h4>
+        <ul>
+          <li><a href="#donate"><span class="t-en">Donate</span><span class="t-te">విరాళం</span></a></li>
+          <li><a href="#store"><span class="t-en">Temple Store</span><span class="t-te">ఆలయ దుకాణం</span></a></li>
+        </ul>
+      </div>
+      <div>
+        <h4><span class="t-en">Reach Us</span><span class="t-te">మమ్మల్ని సంప్రదించండి</span></h4>
+        <ul>
+          <li>📞 [<span class="t-en">Phone Number</span><span class="t-te">ఫోన్ నంబర్</span>]</li>
+          <li>✉️ [<span class="t-en">Email Address</span><span class="t-te">ఇమెయిల్</span>]</li>
+          <li>💬 [WhatsApp]</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; <span id="year"></span> Sri Sri Sri Valli Devasena Sametha Subrahmanyeswara Swamy Temple, Vilasavilli. <span class="t-en">Built with devotion.</span><span class="t-te">భక్తితో నిర్మించబడింది.</span>
+      &nbsp;•&nbsp; <a href="#" id="adminLink" style="opacity:.6;">Admin</a>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ===================== MAP ===================== -->
+<section class="section section--tight" id="location">
+  <div class="container">
+    <div class="section-head center">
+      <p class="eyebrow"><span class="t-en">Find Us</span><span class="t-te">మమ్మల్ని కనుగొనండి</span></p>
+      <h2><span class="t-en">Temple Location</span><span class="t-te">ఆలయ స్థానం</span></h2>
+      <p><span class="t-en">Marked with the Vel — Lord Subrahmanya's Shakti Ayudha.</span><span class="t-te">వేల్ (శక్తి ఆయుధం) గుర్తుతో సూచించబడింది.</span></p>
+    </div>
+    <div class="map-wrap">
+      <div id="templeMap"></div>
+      <div class="map-legend">
+        <img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNjAgNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxjaXJjbGUgY3g9IjMwIiBjeT0iMzAiIHI9IjI5IiBmaWxsPSIjRUZFNENDIi8+CjxjaXJjbGUgY3g9IjMwIiBjeT0iMjIiIHI9IjEwIiBmaWxsPSIjN0ExRjJCIi8+CjxwYXRoIGQ9Ik0xNCA0OCBRMTQgMzAgMzAgMzAgUTQ2IDMwIDQ2IDQ4IiBmaWxsPSIjN0ExRjJCIi8+CjxwYXRoIGQ9Ik0yMiAzNiBMMTggMzAgTTIyIDM2IEwyNiAzMCIgc3Ryb2tlPSIjRTRDNzY1IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8cGF0aCBkPSJNMzggMzYgTDM0IDMwIE0zOCAzNiBMNDIgMzAiIHN0cm9rZT0iI0U0Qzc2NSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPC9zdmc+Cg==" alt="Devotee icon" class="devotee-icon">
+        <span><span class="t-en">Devotees welcome daily, 5:30 AM – 9:00 PM</span><span class="t-te">భక్తులకు ప్రతిరోజు ఉదయం 5:30 – రాత్రి 9:00 వరకు స్వాగతం</span></span>
+      </div>
+    </div>
+    <p class="editnote"><span class="t-en">💡 Map pin uses placeholder coordinates — update with your temple's exact latitude/longitude in script.js (search MAP_LAT / MAP_LNG).</span><span class="t-te">💡 మ్యాప్ పిన్ నమూనా కోఆర్డినేట్‌లను ఉపయోగిస్తుంది — script.js లో వాస్తవ కోఆర్డినేట్‌లను నమోదు చేయండి.</span></p>
+  </div>
+</section>
+
+<!-- ===================== LOGIN MODAL ===================== -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal-box">
+    <button class="modal-close" data-close="loginModal">&times;</button>
+    <h3><span class="t-en">Login to Book a Seva</span><span class="t-te">సేవ బుక్ చేయడానికి లాగిన్ అవ్వండి</span></h3>
+    <p class="editnote"><span class="t-en">💡 Demo mode: details are saved on this device only, no OTP is sent yet. Ready to connect a real SMS/WhatsApp OTP service later.</span><span class="t-te">💡 డెమో మోడ్: వివరాలు ఈ పరికరంలో మాత్రమే సేవ్ చేయబడతాయి, OTP పంపబడదు.</span></p>
+    <form id="loginForm">
+      <label><span class="t-en">Your Name</span><span class="t-te">మీ పేరు</span>
+        <input type="text" id="loginName" required placeholder="e.g. Ramesh Kumar">
+      </label>
+      <label><span class="t-en">Mobile Number</span><span class="t-te">మొబైల్ నంబర్</span>
+        <input type="tel" id="loginMobile" required pattern="[0-9]{10}" placeholder="10-digit mobile number">
+      </label>
+      <button type="submit" class="btn btn-maroon" style="width:100%; justify-content:center;">
+        <span class="t-en">Continue</span><span class="t-te">కొనసాగించండి</span>
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- ===================== BOOKING MODAL ===================== -->
+<div class="modal-overlay" id="bookingModal">
+  <div class="modal-box">
+    <button class="modal-close" data-close="bookingModal">&times;</button>
+    <h3><span class="t-en">Book Seva:</span><span class="t-te">సేవ బుక్ చేయండి:</span> <span id="bookingSevaName"></span></h3>
+    <form id="bookingForm">
+      <label><span class="t-en">Preferred Date</span><span class="t-te">కావలసిన తేదీ</span>
+        <input type="date" id="bookingDate" required>
+      </label>
+      <label><span class="t-en">Gotra (optional)</span><span class="t-te">గోత్రం (ఐచ్ఛికం)</span>
+        <input type="text" id="bookingGotra" placeholder="e.g. Kashyapa">
+      </label>
+      <label><span class="t-en">Pilgrim Name(s)</span><span class="t-te">యాత్రికుల పేర్లు</span>
+        <textarea id="bookingNames" rows="2" placeholder="Names to be included in the seva"></textarea>
+      </label>
+      <label><span class="t-en">Additional Notes (optional)</span><span class="t-te">అదనపు వివరాలు (ఐచ్ఛికం)</span>
+        <textarea id="bookingNotes" rows="2"></textarea>
+      </label>
+      <button type="submit" class="btn btn-maroon" style="width:100%; justify-content:center;">
+        <span class="t-en">Confirm Booking</span><span class="t-te">బుకింగ్ నిర్ధారించండి</span>
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- ===================== DASHBOARD ===================== -->
+<div class="dashboard-overlay" id="dashboardOverlay">
+  <div class="dashboard-panel">
+    <div class="dashboard-head">
+      <h3><span class="t-en">My Sevas</span><span class="t-te">నా సేవలు</span></h3>
+      <div>
+        <button class="btn btn-outline-dark" id="logoutBtn"><span class="t-en">Logout</span><span class="t-te">లాగ్అవుట్</span></button>
+        <button class="modal-close" id="closeDashboard">&times;</button>
+      </div>
+    </div>
+    <div id="dashboardList"></div>
+  </div>
+</div>
+
+<!-- ===================== ADMIN LOGIN ===================== -->
+<div class="modal-overlay" id="adminLoginModal">
+  <div class="modal-box">
+    <button class="modal-close" data-close="adminLoginModal">&times;</button>
+    <h3>Admin Login</h3>
+    <p class="editnote">⚠️ Demo-level password only, checked in your browser — not secure for a real production site. See README.md before going live.</p>
+    <form id="adminLoginForm">
+      <label>Admin Email
+        <input type="email" id="adminEmail" placeholder="Only needed once database is connected">
+      </label>
+      <label>Admin Password
+        <input type="password" id="adminPassword" required>
+      </label>
+      <button type="submit" class="btn btn-maroon" style="width:100%; justify-content:center;">Login</button>
+    </form>
+  </div>
+</div>
+
+<!-- ===================== ADMIN DASHBOARD ===================== -->
+<div class="dashboard-overlay" id="adminDashboard">
+  <div class="dashboard-panel" style="max-width:920px;">
+    <div class="dashboard-head">
+      <h3>Admin Dashboard</h3>
+      <div>
+        <button class="btn btn-outline-dark" id="adminLogoutBtn">Logout</button>
+        <button class="modal-close" id="closeAdminDashboard">&times;</button>
+      </div>
+    </div>
+    <div id="adminContent" style="padding:24px 28px;">
+      <div class="admin-stats" id="adminStats"></div>
+      <div class="admin-tabs">
+        <button class="gtab active" data-atab="bookings">Seva Bookings</button>
+        <button class="gtab" data-atab="donations">Donations</button>
+      </div>
+      <div id="adminPanel-bookings" class="admin-panel active"></div>
+      <div id="adminPanel-donations" class="admin-panel"></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// Mobile menu toggle
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+menuToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => navLinks.classList.remove('open'));
+});
+
+// Gallery tabs
+const tabs = document.querySelectorAll('.gtab');
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelectorAll('.gallery-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+  });
+});
+
+// Footer year
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+revealEls.forEach(el => observer.observe(el));
+
+// Also reveal story-card and cards on scroll
+document.querySelectorAll('.story-card, .card').forEach(el => {
+  el.classList.add('reveal');
+  observer.observe(el);
+});
+
+// Language toggle
+(function(){
+  const htmlRoot = document.getElementById('htmlRoot');
+  const body = document.body;
+  const btn = document.getElementById('langToggle');
+  const label = document.getElementById('langToggleLabel');
+  if(!btn) return;
+
+  function setLang(lang){
+    body.setAttribute('data-lang', lang);
+    htmlRoot.setAttribute('lang', lang);
+    label.textContent = lang === 'te' ? 'English' : 'తెలుగు';
+    try{ localStorage.setItem('templeLang', lang); }catch(e){}
+  }
+
+  let saved = 'te';
+  try{ saved = localStorage.getItem('templeLang') || 'te'; }catch(e){}
+  setLang(saved);
+
+  btn.addEventListener('click', () => {
+    const current = body.getAttribute('data-lang');
+    setLang(current === 'te' ? 'en' : 'te');
+  });
+})();
+
+// Hero image slider
+(function(){
+  const slider = document.getElementById('heroSlider');
+  const dotsWrap = document.getElementById('heroDots');
+  if(!slider) return;
+  const slides = slider.querySelectorAll('.hero-slide');
+  if(slides.length === 0) return;
+  let idx = 0;
+
+  slides.forEach((s, i) => {
+    const dot = document.createElement('button');
+    if(i === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => showSlide(i));
+    dotsWrap.appendChild(dot);
+  });
+  const dots = dotsWrap.querySelectorAll('button');
+
+  function showSlide(i){
+    slides[idx].classList.remove('active');
+    dots[idx].classList.remove('active');
+    idx = i;
+    slides[idx].classList.add('active');
+    dots[idx].classList.add('active');
+  }
+
+  slides[0].classList.add('active');
+
+  setInterval(() => {
+    showSlide((idx + 1) % slides.length);
+  }, 4500);
+})();
+
+// ================= Data Layer: Supabase (with localStorage fallback) =================
+// ---- CONFIGURATION ----
+// Set SUPABASE_ENABLED to true and fill in your project's URL + anon key
+// (find both in Supabase Dashboard > Project Settings > API) to make
+// logins, seva bookings, donations and the admin dashboard use a real
+// shared database instead of each visitor's own browser storage.
+// Until then, everything works as a local demo (data stays on each device).
+const SUPABASE_ENABLED = false; // EDIT: set to true once configured below
+const SUPABASE_URL = "https://YOUR-PROJECT-REF.supabase.co"; // EDIT
+const SUPABASE_ANON_KEY = "YOUR-ANON-PUBLIC-KEY"; // EDIT
+
+let supabase = null;
+if (SUPABASE_ENABLED && window.supabase) {
+  supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+}
+
+// ================= Seva Booking, Login & Dashboard =================
+(function(){
+  const TEMPLE_WHATSAPP = "911234567890"; // EDIT: temple's WhatsApp number, country code + number, no + or spaces
+  const MAP_LAT = 16.5780; // EDIT: replace with real temple latitude
+  const MAP_LNG = 82.0092; // EDIT: replace with real temple longitude
+
+  const loginModal = document.getElementById('loginModal');
+  const bookingModal = document.getElementById('bookingModal');
+  const dashboardOverlay = document.getElementById('dashboardOverlay');
+  const toast = document.getElementById('toast');
+  const navAuthLink = document.getElementById('navAuthLink');
+
+  // Devotee "login" is just a locally remembered name+mobile (not a security
+  // boundary) — it's how the site knows whose bookings to show/submit.
+  function getUser(){
+    try{ return JSON.parse(localStorage.getItem('templeUser') || 'null'); }catch(e){ return null; }
+  }
+  function setUser(u){
+    try{ localStorage.setItem('templeUser', JSON.stringify(u)); }catch(e){}
+  }
+  function showToast(html, ms){
+    toast.innerHTML = html;
+    toast.classList.add('show');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(() => toast.classList.remove('show'), ms || 6000);
+  }
+  function openModal(el){ el.classList.add('open'); }
+  function closeModal(el){ el.classList.remove('open'); }
+
+  // ---- Local (demo) fallback storage helpers ----
+  function localGetBookings(){ try{ return JSON.parse(localStorage.getItem('templeBookings') || '[]'); }catch(e){ return []; } }
+  function localSaveBookings(list){ try{ localStorage.setItem('templeBookings', JSON.stringify(list)); }catch(e){} }
+
+  // ---- Data layer: insert a booking (Supabase or local) ----
+  async function insertBooking(b){
+    if(SUPABASE_ENABLED && supabase){
+      const { data, error } = await supabase.from('bookings').insert({
+        seva: b.seva, name: b.name, mobile: b.mobile,
+        seva_date: b.date || null, gotra: b.gotra, pilgrim_names: b.pilgrimNames, notes: b.notes
+      }).select().single();
+      if(error){ console.error(error); throw error; }
+      return data;
+    }else{
+      const list = localGetBookings();
+      const rec = { id: 'SV' + Date.now(), ...b, seva_date: b.date, pilgrim_names: b.pilgrimNames, created_at: new Date().toISOString() };
+      list.push(rec);
+      localSaveBookings(list);
+      return rec;
+    }
+  }
+
+  // ---- Data layer: get my bookings ----
+  async function getMyBookings(mobile){
+    if(SUPABASE_ENABLED && supabase){
+      const { data, error } = await supabase.rpc('get_my_bookings', { p_mobile: mobile });
+      if(error){ console.error(error); return []; }
+      return data.map(d => ({ id: d.id, seva: d.seva, name: d.name, mobile: d.mobile, date: d.seva_date, gotra: d.gotra, pilgrimNames: d.pilgrim_names, notes: d.notes, createdAt: d.created_at }));
+    }else{
+      return localGetBookings().filter(b => b.mobile === mobile);
+    }
+  }
+
+  // ---- Data layer: update my booking's gotra/pilgrim names ----
+  async function updateMyBooking(id, mobile, gotra, pilgrimNames){
+    if(SUPABASE_ENABLED && supabase){
+      const { error } = await supabase.rpc('update_my_booking', { p_id: id, p_mobile: mobile, p_gotra: gotra, p_pilgrim_names: pilgrimNames });
+      if(error){ console.error(error); throw error; }
+    }else{
+      const list = localGetBookings().map(b => b.id === id ? {...b, gotra, pilgrimNames} : b);
+      localSaveBookings(list);
+    }
+  }
+
+  function updateNavAuth(){
+    const u = getUser();
+    if(navAuthLink){
+      navAuthLink.querySelectorAll('.t-en, .t-te').forEach(s => s.remove());
+      const en = document.createElement('span'); en.className='t-en';
+      const te = document.createElement('span'); te.className='t-te';
+      if(u){ en.textContent = 'My Sevas'; te.textContent = 'నా సేవలు'; }
+      else{ en.textContent = 'Login'; te.textContent = 'లాగిన్'; }
+      navAuthLink.appendChild(en); navAuthLink.appendChild(te);
+    }
+  }
+
+  let pendingSeva = null;
+
+  document.querySelectorAll('.btn-book-seva').forEach(btn => {
+    btn.addEventListener('click', () => {
+      pendingSeva = btn.dataset.seva;
+      const u = getUser();
+      if(!u){ openModal(loginModal); }
+      else{
+        document.getElementById('bookingSevaName').textContent = pendingSeva;
+        openModal(bookingModal);
+      }
+    });
+  });
+
+  if(navAuthLink){
+    navAuthLink.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const u = getUser();
+      if(u){ await renderDashboard(); openModal(dashboardOverlay); }
+      else{ openModal(loginModal); }
+    });
+  }
+
+  document.getElementById('loginForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('loginName').value.trim();
+    const mobile = document.getElementById('loginMobile').value.trim();
+    if(!/^[0-9]{10}$/.test(mobile)){
+      alert('Please enter a valid 10-digit mobile number.');
+      return;
+    }
+    setUser({ name, mobile });
+    updateNavAuth();
+    closeModal(loginModal);
+    if(pendingSeva){
+      document.getElementById('bookingSevaName').textContent = pendingSeva;
+      openModal(bookingModal);
+    }
+  });
+
+  document.getElementById('bookingForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const u = getUser();
+    if(!u) return;
+    const booking = {
+      seva: pendingSeva, mobile: u.mobile, name: u.name,
+      date: document.getElementById('bookingDate').value,
+      gotra: document.getElementById('bookingGotra').value.trim(),
+      pilgrimNames: document.getElementById('bookingNames').value.trim(),
+      notes: document.getElementById('bookingNotes').value.trim()
+    };
+    try{
+      await insertBooking(booking);
+    }catch(err){
+      showToast('⚠️ Could not save booking. Please try again.', 5000);
+      return;
+    }
+    closeModal(bookingModal);
+    document.getElementById('bookingForm').reset();
+
+    const waText = encodeURIComponent(
+      `🙏 Seva Booking Request\nSeva: ${booking.seva}\nDate: ${booking.date}\nName: ${booking.name}\nMobile: ${booking.mobile}\nGotra: ${booking.gotra || '-'}\nPilgrims: ${booking.pilgrimNames || '-'}\nNotes: ${booking.notes || '-'}`
+    );
+    const waLink = `https://wa.me/${TEMPLE_WHATSAPP}?text=${waText}`;
+    showToast(`✅ Seva booked! <a href="${waLink}" target="_blank" rel="noopener">Notify temple on WhatsApp →</a>`, 9000);
+    pendingSeva = null;
+  });
+
+  async function renderDashboard(){
+    const u = getUser();
+    const listEl = document.getElementById('dashboardList');
+    listEl.innerHTML = '<div class="empty-state">Loading…</div>';
+    if(!u){ listEl.innerHTML = ''; return; }
+    const mine = await getMyBookings(u.mobile);
+    listEl.innerHTML = '';
+    if(mine.length === 0){
+      listEl.innerHTML = `<div class="empty-state"><span class="t-en">No sevas booked yet.</span><span class="t-te">ఇంకా సేవలు బుక్ చేయలేదు.</span></div>`;
+      return;
+    }
+    mine.forEach(b => {
+      const card = document.createElement('div');
+      card.className = 'booking-card';
+      card.innerHTML = `
+        <h4>${b.seva}</h4>
+        <div class="meta">${b.date || '—'} &nbsp;•&nbsp; Booking ID: ${String(b.id).slice(0,8)}</div>
+        <label>Gotra</label>
+        <input type="text" value="${b.gotra || ''}" data-field="gotra">
+        <label>Pilgrim Name(s)</label>
+        <textarea rows="2" data-field="pilgrimNames">${b.pilgrimNames || ''}</textarea>
+        <div class="booking-actions">
+          <button type="button" data-save="${b.id}">Save Details</button>
+          <button type="button" data-invoice="${b.id}">View Receipt</button>
+        </div>`;
+      listEl.appendChild(card);
+
+      card.querySelector('[data-save]').addEventListener('click', async () => {
+        const gotra = card.querySelector('[data-field="gotra"]').value;
+        const pilgrimNames = card.querySelector('[data-field="pilgrimNames"]').value;
+        try{
+          await updateMyBooking(b.id, u.mobile, gotra, pilgrimNames);
+          showToast('✅ Details saved.', 3000);
+        }catch(err){
+          showToast('⚠️ Could not save. Please try again.', 4000);
+        }
+      });
+      card.querySelector('[data-invoice]').addEventListener('click', () => printReceipt({...b, gotra: card.querySelector('[data-field="gotra"]').value, pilgrimNames: card.querySelector('[data-field="pilgrimNames"]').value}));
+    });
+  }
+
+  function printReceipt(b){
+    const w = window.open('', '_blank', 'width=480,height=640');
+    w.document.write(`
+      <html><head><title>Seva Booking Receipt</title>
+      <style>
+        body{font-family: Georgia, serif; padding:32px; color:#2B2320;}
+        h2{color:#7A1F2B; margin-bottom:0;}
+        .sub{color:#0F5257; font-size:.85rem; margin-bottom:24px;}
+        table{width:100%; border-collapse:collapse;}
+        td{padding:8px 0; border-bottom:1px solid #DED0AC;}
+        td:first-child{font-weight:bold; width:40%;}
+        .note{margin-top:24px; font-size:.78rem; color:#666;}
+      </style></head><body>
+      <h2>Sri Sri Sri Valli Devasena Sametha Subrahmanyeswara Swamy Temple, Vilasavilli</h2>
+      <div class="sub">Seva Booking Receipt (not a payment invoice)</div>
+      <table>
+        <tr><td>Seva</td><td>${b.seva}</td></tr>
+        <tr><td>Date</td><td>${b.date || '-'}</td></tr>
+        <tr><td>Devotee Name</td><td>${b.name}</td></tr>
+        <tr><td>Mobile</td><td>${b.mobile}</td></tr>
+        <tr><td>Gotra</td><td>${b.gotra || '-'}</td></tr>
+        <tr><td>Pilgrim(s)</td><td>${b.pilgrimNames || '-'}</td></tr>
+        <tr><td>Notes</td><td>${b.notes || '-'}</td></tr>
+      </table>
+      <div class="note">This is a booking confirmation only. It is not a GST payment invoice — connect a payment gateway to issue those automatically.</div>
+      </body></html>
+    `);
+    w.document.close();
+    w.print();
+  }
+
+  document.getElementById('logoutBtn').addEventListener('click', () => {
+    localStorage.removeItem('templeUser');
+    updateNavAuth();
+    closeModal(dashboardOverlay);
+    window.location.hash = '#home';
+    showToast('👋 Logged out.', 3000);
+  });
+
+  document.getElementById('closeDashboard').addEventListener('click', () => closeModal(dashboardOverlay));
+
+  document.querySelectorAll('.modal-close[data-close]').forEach(btn => {
+    btn.addEventListener('click', () => closeModal(document.getElementById(btn.dataset.close)));
+  });
+  [loginModal, bookingModal].forEach(m => {
+    m.addEventListener('click', (e) => { if(e.target === m) closeModal(m); });
+  });
+
+  updateNavAuth();
+
+  // ===== Map =====
+  if(document.getElementById('templeMap') && window.L){
+    const map = L.map('templeMap', { scrollWheelZoom: false }).setView([MAP_LAT, MAP_LNG], 15);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+    const velIcon = L.icon({
+      iconUrl: 'data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNjAgMTAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8ZGVmcz4KPGxpbmVhckdyYWRpZW50IGlkPSJ2ZWxHb2xkIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMCI+CjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNDOUEyMjciLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNFNEM3NjUiLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8bGluZSB4MT0iMzAiIHkxPSIzMCIgeDI9IjMwIiB5Mj0iOTUiIHN0cm9rZT0idXJsKCN2ZWxHb2xkKSIgc3Ryb2tlLXdpZHRoPSI1IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPHBhdGggZD0iTTMwIDIgTDQyIDM0IEwzMCAyNiBMMTggMzQgWiIgZmlsbD0idXJsKCN2ZWxHb2xkKSIgc3Ryb2tlPSIjN0ExRjJCIiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8Y2lyY2xlIGN4PSIzMCIgY3k9IjM0IiByPSI1IiBmaWxsPSIjN0ExRjJCIiBzdHJva2U9IiNFNEM3NjUiIHN0cm9rZS13aWR0aD0iMSIvPgo8Y2lyY2xlIGN4PSIzMCIgY3k9Ijk1IiByPSI2IiBmaWxsPSIjN0ExRjJCIi8+Cjwvc3ZnPgo=',
+      iconSize: [34, 56],
+      iconAnchor: [17, 56],
+      popupAnchor: [0, -50]
+    });
+    L.marker([MAP_LAT, MAP_LNG], { icon: velIcon }).addTo(map)
+      .bindPopup('Sri Sri Sri Valli Devasena Sametha Subrahmanyeswara Swamy Temple').openPopup();
+  }
+})();
+
+// ================= Donations + Admin Dashboard =================
+(function(){
+  const ADMIN_PASSWORD = "temple2026"; // used only when SUPABASE_ENABLED is false (local demo mode)
+
+  const donationForm = document.getElementById('donationForm');
+  const openDonationFormBtn = document.getElementById('openDonationForm');
+  const adminLoginModal = document.getElementById('adminLoginModal');
+  const adminDashboard = document.getElementById('adminDashboard');
+  const adminLink = document.getElementById('adminLink');
+  const toast = document.getElementById('toast');
+
+  function showToast(html, ms){
+    toast.innerHTML = html;
+    toast.classList.add('show');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(() => toast.classList.remove('show'), ms || 6000);
+  }
+  function localGetDonations(){ try{ return JSON.parse(localStorage.getItem('templeDonations') || '[]'); }catch(e){ return []; } }
+  function localSaveDonations(list){ try{ localStorage.setItem('templeDonations', JSON.stringify(list)); }catch(e){} }
+  function localGetBookingsAll(){ try{ return JSON.parse(localStorage.getItem('templeBookings') || '[]'); }catch(e){ return []; } }
+
+  async function insertDonation(d){
+    if(SUPABASE_ENABLED && supabase){
+      const { data, error } = await supabase.from('donations').insert({
+        name: d.name, mobile: d.mobile, amount: d.amount, purpose: d.purpose
+      }).select().single();
+      if(error){ console.error(error); throw error; }
+      return data;
+    }else{
+      const rec = { id: 'DN' + Date.now(), ...d, created_at: new Date().toISOString() };
+      const list = localGetDonations();
+      list.push(rec);
+      localSaveDonations(list);
+      return rec;
+    }
+  }
+
+  // Admin-only: fetch everything (requires real Supabase Auth session when enabled)
+  async function adminGetAllBookings(){
+    if(SUPABASE_ENABLED && supabase){
+      const { data, error } = await supabase.from('bookings').select('*').order('created_at', { ascending: false });
+      if(error){ console.error(error); return []; }
+      return data.map(d => ({ id: d.id, seva: d.seva, name: d.name, mobile: d.mobile, date: d.seva_date, gotra: d.gotra, pilgrimNames: d.pilgrim_names }));
+    }else{
+      return localGetBookingsAll();
+    }
+  }
+  async function adminGetAllDonations(){
+    if(SUPABASE_ENABLED && supabase){
+      const { data, error } = await supabase.from('donations').select('*').order('created_at', { ascending: false });
+      if(error){ console.error(error); return []; }
+      return data.map(d => ({ id: d.id, name: d.name, mobile: d.mobile, amount: Number(d.amount), purpose: d.purpose, createdAt: d.created_at }));
+    }else{
+      return localGetDonations();
+    }
+  }
+
+  if(openDonationFormBtn){
+    openDonationFormBtn.addEventListener('click', () => {
+      donationForm.style.display = donationForm.style.display === 'none' ? 'flex' : 'none';
+    });
+  }
+
+  if(donationForm){
+    donationForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const donation = {
+        name: document.getElementById('donorName').value.trim(),
+        mobile: document.getElementById('donorMobile').value.trim(),
+        amount: parseFloat(document.getElementById('donorAmount').value) || 0,
+        purpose: document.getElementById('donorPurpose').value.trim() || 'General'
+      };
+      try{
+        await insertDonation(donation);
+        donationForm.reset();
+        donationForm.style.display = 'none';
+        showToast('🙏 Thank you! Your donation has been recorded.', 5000);
+      }catch(err){
+        showToast('⚠️ Could not record donation. Please try again.', 5000);
+      }
+    });
+  }
+
+  // ---- Admin auth ----
+  async function isAdminLoggedIn(){
+    if(SUPABASE_ENABLED && supabase){
+      const { data } = await supabase.auth.getSession();
+      return !!data.session;
+    }else{
+      return sessionStorage.getItem('templeAdmin') === 'yes';
+    }
+  }
+
+  if(adminLink){
+    adminLink.addEventListener('click', async (e) => {
+      e.preventDefault();
+      if(await isAdminLoggedIn()){
+        await renderAdminDashboard();
+        adminDashboard.classList.add('open');
+      }else{
+        adminLoginModal.classList.add('open');
+      }
+    });
+  }
+
+  document.getElementById('adminLoginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if(SUPABASE_ENABLED && supabase){
+      const email = document.getElementById('adminEmail') ? document.getElementById('adminEmail').value : '';
+      const pw = document.getElementById('adminPassword').value;
+      const { error } = await supabase.auth.signInWithPassword({ email, password: pw });
+      if(error){ alert('Login failed: ' + error.message); return; }
+    }else{
+      const pw = document.getElementById('adminPassword').value;
+      if(pw !== ADMIN_PASSWORD){ alert('Incorrect password.'); return; }
+      sessionStorage.setItem('templeAdmin', 'yes');
+    }
+    adminLoginModal.classList.remove('open');
+    document.getElementById('adminLoginForm').reset();
+    await renderAdminDashboard();
+    adminDashboard.classList.add('open');
+  });
+
+  document.getElementById('adminLogoutBtn').addEventListener('click', async () => {
+    if(SUPABASE_ENABLED && supabase){ await supabase.auth.signOut(); }
+    else{ sessionStorage.removeItem('templeAdmin'); }
+    adminDashboard.classList.remove('open');
+    showToast('Admin logged out.', 3000);
+  });
+  document.getElementById('closeAdminDashboard').addEventListener('click', () => {
+    adminDashboard.classList.remove('open');
+  });
+
+  document.querySelectorAll('.admin-tabs .gtab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.admin-tabs .gtab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('adminPanel-' + tab.dataset.atab).classList.add('active');
+    });
+  });
+
+  async function renderAdminDashboard(){
+    document.getElementById('adminStats').innerHTML = '<div class="empty-state">Loading…</div>';
+    const bookings = await adminGetAllBookings();
+    const donations = await adminGetAllDonations();
+    const totalAmount = donations.reduce((sum, d) => sum + (d.amount || 0), 0);
+
+    const byPerson = {};
+    donations.forEach(d => {
+      const key = d.mobile;
+      if(!byPerson[key]) byPerson[key] = { name: d.name, mobile: d.mobile, total: 0, count: 0 };
+      byPerson[key].total += d.amount || 0;
+      byPerson[key].count += 1;
+    });
+
+    document.getElementById('adminStats').innerHTML = `
+      <div class="stat-box"><span class="num">${bookings.length}</span><span class="label">Total Sevas Booked</span></div>
+      <div class="stat-box"><span class="num">₹${totalAmount.toLocaleString('en-IN')}</span><span class="label">Total Donations</span></div>
+      <div class="stat-box"><span class="num">${donations.length}</span><span class="label">Donation Entries</span></div>
+      <div class="stat-box"><span class="num">${Object.keys(byPerson).length}</span><span class="label">Unique Donors</span></div>
+    `;
+
+    let bookingsHtml = '';
+    if(bookings.length === 0){
+      bookingsHtml = '<div class="empty-state">No sevas booked yet.</div>';
+    }else{
+      bookingsHtml = `<table class="admin-table"><thead><tr>
+        <th>Seva</th><th>Date</th><th>Devotee</th><th>Mobile</th><th>Gotra</th><th>Pilgrims</th>
+        </tr></thead><tbody>`;
+      bookings.forEach(b => {
+        bookingsHtml += `<tr><td>${b.seva}</td><td>${b.date || '-'}</td><td>${b.name}</td><td>${b.mobile}</td><td>${b.gotra || '-'}</td><td>${b.pilgrimNames || '-'}</td></tr>`;
+      });
+      bookingsHtml += '</tbody></table>';
+    }
+    document.getElementById('adminPanel-bookings').innerHTML = bookingsHtml;
+
+    let donationsHtml = '';
+    if(donations.length === 0){
+      donationsHtml = '<div class="empty-state">No donations recorded yet.</div>';
+    }else{
+      donationsHtml = '<h4 style="margin-bottom:12px;">All Donation Entries</h4>';
+      donationsHtml += `<table class="admin-table"><thead><tr><th>Donor</th><th>Mobile</th><th>Amount</th><th>Purpose</th><th>Date</th></tr></thead><tbody>`;
+      donations.forEach(d => {
+        const dt = d.createdAt ? new Date(d.createdAt).toLocaleDateString('en-IN') : '-';
+        donationsHtml += `<tr><td>${d.name}</td><td>${d.mobile}</td><td>₹${d.amount.toLocaleString('en-IN')}</td><td>${d.purpose}</td><td>${dt}</td></tr>`;
+      });
+      donationsHtml += '</tbody></table>';
+
+      donationsHtml += '<h4 style="margin:28px 0 12px;">Totals by Individual Donor</h4>';
+      donationsHtml += `<table class="admin-table"><thead><tr><th>Donor</th><th>Mobile</th><th>Total Donated</th><th>Number of Donations</th></tr></thead><tbody>`;
+      Object.values(byPerson).sort((a,b) => b.total - a.total).forEach(p => {
+        donationsHtml += `<tr><td>${p.name}</td><td>${p.mobile}</td><td>₹${p.total.toLocaleString('en-IN')}</td><td>${p.count}</td></tr>`;
+      });
+      donationsHtml += '</tbody></table>';
+    }
+    document.getElementById('adminPanel-donations').innerHTML = donationsHtml;
+  }
+})();
+
+</script>
+</body>
+</html>
