@@ -1,0 +1,40 @@
+<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<radialGradient id="haloGrad" cx="50%" cy="42%" r="55%">
+<stop offset="0%" stop-color="#FFF6D8"/><stop offset="55%" stop-color="#E4C765"/><stop offset="100%" stop-color="#C9A227" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="skinGrad" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#F3CBA0"/><stop offset="100%" stop-color="#E8B888"/>
+</linearGradient>
+</defs>
+<circle class="halo-ring" cx="60" cy="54" r="46" fill="url(#haloGrad)"/>
+<!-- hair -->
+<path d="M32 50 Q28 26 60 22 Q92 26 88 50 Q90 66 84 70 Q86 50 60 44 Q34 50 36 70 Q30 66 32 50Z" fill="#241A17"/>
+<!-- face -->
+<ellipse cx="60" cy="56" rx="24" ry="27" fill="url(#skinGrad)"/>
+<!-- ears + earrings -->
+<circle cx="35" cy="58" r="4" fill="#C9A227"/>
+<circle cx="85" cy="58" r="4" fill="#C9A227"/>
+<!-- tilak -->
+<path d="M50 34 L50 44" stroke="#F7F0E3" stroke-width="2.5"/>
+<path d="M60 32 L60 44" stroke="#F7F0E3" stroke-width="2.5"/>
+<path d="M70 34 L70 44" stroke="#F7F0E3" stroke-width="2.5"/>
+<circle cx="60" cy="47" r="3" fill="#7A1F2B"/>
+<!-- eyebrows + eyes -->
+<path d="M48 52 Q53 49 58 52" stroke="#241A17" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+<path d="M62 52 Q67 49 72 52" stroke="#241A17" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+<ellipse cx="53" cy="57" rx="4.2" ry="2.6" fill="#241A17"/>
+<ellipse cx="67" cy="57" rx="4.2" ry="2.6" fill="#241A17"/>
+<!-- gentle smile -->
+<path d="M53 68 Q60 72 67 68" stroke="#7A1F2B" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+<!-- peacock feather beside head -->
+<g class="feather-sway" transform="translate(93,30)">
+<ellipse cx="0" cy="0" rx="7" ry="13" fill="#0F5257"/>
+<ellipse cx="0" cy="0" rx="4" ry="8" fill="#E4C765" opacity="0.85"/>
+<line x1="0" y1="12" x2="0" y2="34" stroke="#C9A227" stroke-width="2"/>
+</g>
+<!-- small blessing hand -->
+<g transform="translate(18,66)">
+<path d="M0 20 Q-2 6 4 -2 Q7 -6 8 -1 Q9 -6 12 -2 Q13 3 12 8 Q15 4 16 8 Q17 14 12 22 Q6 26 0 20Z" fill="url(#skinGrad)" stroke="#C9A227" stroke-width="0.6"/>
+</g>
+</svg>

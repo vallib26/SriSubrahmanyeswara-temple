@@ -1,0 +1,20 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<radialGradient id="flameGrad" cx="50%" cy="30%" r="70%">
+<stop offset="0%" stop-color="#FFF3C4"/><stop offset="50%" stop-color="#E4C765"/><stop offset="100%" stop-color="#C9A227"/>
+</radialGradient>
+<linearGradient id="lampBody" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#C9A227"/><stop offset="100%" stop-color="#7A1F2B"/>
+</linearGradient>
+</defs>
+<rect width="400" height="300" fill="#0A3B3F"/>
+<ellipse cx="200" cy="150" rx="140" ry="140" fill="#0F5257" opacity="0.4"/>
+<path d="M195 130 Q 185 100 200 70 Q 215 100 205 130 Q 200 115 195 130 Z" fill="url(#flameGrad)"/>
+<ellipse cx="200" cy="200" rx="70" ry="18" fill="url(#lampBody)"/>
+<path d="M130 200 Q 130 175 165 168 L 235 168 Q 270 175 270 200 Z" fill="url(#lampBody)"/>
+<ellipse cx="200" cy="168" rx="35" ry="9" fill="#E4C765"/>
+<circle cx="120" cy="195" r="4" fill="#E4C765"/><circle cx="280" cy="195" r="4" fill="#E4C765"/>
+<g fill="#E4C765" opacity="0.7">
+<circle cx="90" cy="100" r="2"/><circle cx="320" cy="80" r="2"/><circle cx="60" cy="180" r="1.5"/><circle cx="340" cy="150" r="2"/>
+</g>
+</svg>

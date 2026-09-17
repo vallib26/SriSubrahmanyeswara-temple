@@ -1,0 +1,27 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+<rect width="400" height="300" fill="#EFE4CC"/>
+<g transform="translate(200,170)">
+<g fill="#7A1F2B" opacity="0.9">
+<ellipse cx="0" cy="-10" rx="18" ry="55" transform="rotate(0)"/>
+<ellipse cx="0" cy="-10" rx="18" ry="55" transform="rotate(45)"/>
+<ellipse cx="0" cy="-10" rx="18" ry="55" transform="rotate(90)"/>
+<ellipse cx="0" cy="-10" rx="18" ry="55" transform="rotate(135)"/>
+<ellipse cx="0" cy="-10" rx="18" ry="55" transform="rotate(180)"/>
+<ellipse cx="0" cy="-10" rx="18" ry="55" transform="rotate(225)"/>
+<ellipse cx="0" cy="-10" rx="18" ry="55" transform="rotate(270)"/>
+<ellipse cx="0" cy="-10" rx="18" ry="55" transform="rotate(315)"/>
+</g>
+<g fill="#C9A227">
+<ellipse cx="0" cy="-8" rx="12" ry="38" transform="rotate(22)"/>
+<ellipse cx="0" cy="-8" rx="12" ry="38" transform="rotate(67)"/>
+<ellipse cx="0" cy="-8" rx="12" ry="38" transform="rotate(112)"/>
+<ellipse cx="0" cy="-8" rx="12" ry="38" transform="rotate(157)"/>
+<ellipse cx="0" cy="-8" rx="12" ry="38" transform="rotate(202)"/>
+<ellipse cx="0" cy="-8" rx="12" ry="38" transform="rotate(247)"/>
+<ellipse cx="0" cy="-8" rx="12" ry="38" transform="rotate(292)"/>
+<ellipse cx="0" cy="-8" rx="12" ry="38" transform="rotate(337)"/>
+</g>
+<circle cx="0" cy="0" r="16" fill="#E4C765"/>
+<circle cx="0" cy="0" r="8" fill="#7A1F2B"/>
+</g>
+</svg>

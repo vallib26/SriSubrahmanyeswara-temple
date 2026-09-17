@@ -1,0 +1,22 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="potGrad" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0%" stop-color="#E4C765"/><stop offset="100%" stop-color="#7A1F2B"/>
+</linearGradient>
+</defs>
+<rect width="400" height="300" fill="#F7F0E3"/>
+<g transform="translate(200,160)">
+<path d="M-8 -90 L 8 -90 L 8 -70 L -8 -70 Z" fill="#0F5257"/>
+<ellipse cx="0" cy="-70" rx="14" ry="6" fill="#C9A227"/>
+<path d="M-45 -10 Q -45 -60 0 -66 Q 45 -60 45 -10 Q 45 40 0 55 Q -45 40 -45 -10 Z" fill="url(#potGrad)" stroke="#7A1F2B" stroke-width="2"/>
+<ellipse cx="0" cy="-40" rx="46" ry="10" fill="#0F5257" opacity="0.5"/>
+<ellipse cx="0" cy="0" rx="46" ry="10" fill="#0F5257" opacity="0.3"/>
+<g fill="#0A3B3F" opacity="0.5">
+<path d="M-30 -70 Q 0 -50 30 -70" stroke="#0A3B3F" stroke-width="1.5" fill="none"/>
+</g>
+<!-- mango leaves -->
+<path d="M-15 -90 Q -30 -100 -20 -115 Q -5 -105 -15 -90 Z" fill="#0F5257"/>
+<path d="M0 -90 Q -5 -105 5 -118 Q 15 -105 0 -90 Z" fill="#0F5257"/>
+<path d="M15 -90 Q 30 -100 20 -115 Q 5 -105 15 -90 Z" fill="#0F5257"/>
+</g>
+</svg>
